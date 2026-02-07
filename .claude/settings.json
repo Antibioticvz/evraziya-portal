@@ -2,6 +2,8 @@
   "permissions": {
     "allow": [
       "Read",
+      "Write",
+      "Edit",
       "Glob",
       "Grep",
       "Bash(yarn build)",
@@ -12,7 +14,11 @@
       "Bash(yarn format)",
       "Bash(yarn format:check)",
       "Bash(yarn test*)",
+      "Bash(yarn format:write*)",
       "Bash(npx shadcn@latest *)",
+      "Bash(rm -rf .next)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
       "Bash(git status*)",
       "Bash(git log*)",
       "Bash(git diff*)",
