@@ -106,6 +106,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                   alt={brand.name}
                   width={200}
                   height={200}
+                  unoptimized
                   className="object-contain"
                 />
               </div>
@@ -172,6 +173,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                           src={product.images[0]}
                           alt={product.name}
                           fill
+                          unoptimized
                           className="object-cover"
                         />
                       ) : (

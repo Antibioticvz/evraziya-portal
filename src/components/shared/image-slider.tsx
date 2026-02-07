@@ -50,6 +50,7 @@ export function ImageSlider({ images, alt, className }: ImageSliderProps) {
               src={src}
               alt={`${alt} ${index + 1}`}
               fill
+              unoptimized
               className="object-cover rounded"
               sizes="(max-width: 768px) 200px, (max-width: 1024px) 280px, 320px"
               loading="lazy"

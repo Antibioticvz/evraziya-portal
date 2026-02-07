@@ -37,6 +37,7 @@ export function ImageGallery({ images, alt, columns = 3, className }: ImageGalle
               src={src}
               alt={`${alt} ${index + 1}`}
               fill
+              unoptimized
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               loading="lazy"
@@ -79,6 +80,7 @@ export function ImageGallery({ images, alt, columns = 3, className }: ImageGalle
               src={images[lightboxIndex]}
               alt={`${alt} ${lightboxIndex + 1}`}
               fill
+              unoptimized
               className="object-contain"
               sizes="90vw"
               priority
