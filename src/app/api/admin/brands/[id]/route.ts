@@ -36,13 +36,24 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   }
 
   const body = await request.json()
-  const { name, slug, description, logo_url, sort_order, is_active } = body
+  const {
+    name,
+    slug,
+    short_description,
+    full_description,
+    logo_url,
+    hero_image_url,
+    sort_order,
+    is_active,
+  } = body
 
   const updates: Record<string, unknown> = {}
   if (name !== undefined) updates.name = name
   if (slug !== undefined) updates.slug = slug
-  if (description !== undefined) updates.description = description
+  if (short_description !== undefined) updates.short_description = short_description
+  if (full_description !== undefined) updates.full_description = full_description
   if (logo_url !== undefined) updates.logo_url = logo_url
+  if (hero_image_url !== undefined) updates.hero_image_url = hero_image_url
   if (sort_order !== undefined) updates.sort_order = sort_order
   if (is_active !== undefined) updates.is_active = is_active
   updates.updated_at = new Date().toISOString()

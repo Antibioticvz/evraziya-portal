@@ -9,7 +9,7 @@ import type { OrderStatus } from '@/types/database'
 
 interface OrderWithClient {
   id: string
-  number: string
+  order_number: string
   client_id: string
   status: OrderStatus
   total_amount: number
@@ -32,7 +32,7 @@ const statusStyles: Record<string, string> = {
   draft: 'bg-gray-100 text-gray-700',
   pending: 'bg-yellow-100 text-yellow-700',
   confirmed: 'bg-blue-100 text-blue-700',
-  in_progress: 'bg-purple-100 text-purple-700',
+  processing: 'bg-purple-100 text-purple-700',
   shipped: 'bg-orange-100 text-orange-700',
   delivered: 'bg-green-100 text-green-700',
   cancelled: 'bg-red-100 text-red-700',
@@ -42,7 +42,7 @@ const statusLabels: Record<string, string> = {
   draft: 'Черновик',
   pending: 'Ожидает',
   confirmed: 'Подтверждён',
-  in_progress: 'В работе',
+  processing: 'В работе',
   shipped: 'Отгружен',
   delivered: 'Доставлен',
   cancelled: 'Отменён',
@@ -151,7 +151,7 @@ export default function OrdersPage() {
                           href={`/dashboard/orders/${order.id}`}
                           className="text-sm font-medium text-blue-600 hover:text-blue-800"
                         >
-                          {order.number || `#${order.id.slice(0, 8)}`}
+                          {order.order_number || `#${order.id.slice(0, 8)}`}
                         </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">

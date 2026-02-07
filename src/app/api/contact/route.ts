@@ -20,6 +20,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Неверный формат email' }, { status: 400 })
     }
 
+    // Extract source page from Referer header
+    const referer = request.headers.get('referer')
+    const sourcePage = referer ? new URL(referer).pathname : null
+
     const supabase = await createClient()
 
     // Store the contact request in database
@@ -29,6 +33,7 @@ export async function POST(request: Request) {
       phone,
       company: company || null,
       message,
+      source_page: sourcePage,
       status: 'new',
     })
 

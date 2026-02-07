@@ -37,6 +37,7 @@ export default function NewOrderPage() {
     control,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<CreateOrderInput>({
     resolver: zodResolver(createOrderSchema),
@@ -46,7 +47,7 @@ export default function NewOrderPage() {
       payment_terms: '',
       delivery_address: '',
       notes: '',
-      items: [{ product_id: '', quantity: 1, unit_price: 0 }],
+      items: [{ product_id: '', product_name: '', quantity: 1, unit_price: 0 }],
     },
   })
 
@@ -189,7 +190,9 @@ export default function NewOrderPage() {
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={() => append({ product_id: '', quantity: 1, unit_price: 0 })}
+                onClick={() =>
+                  append({ product_id: '', product_name: '', quantity: 1, unit_price: 0 })
+                }
               >
                 <PlusIcon className="h-4 w-4 mr-1" />
                 Добавить товар
@@ -210,6 +213,12 @@ export default function NewOrderPage() {
                     <label className="block text-xs font-medium text-gray-500 mb-1">Товар</label>
                     <select
                       {...register(`items.${index}.product_id`)}
+                      onChange={(e) => {
+                        const productId = e.target.value
+                        const product = products.find((p) => p.id === productId)
+                        setValue(`items.${index}.product_id`, productId)
+                        setValue(`items.${index}.product_name`, product?.name || '')
+                      }}
                       className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
                     >
                       <option value="">Выберите товар</option>
@@ -220,6 +229,7 @@ export default function NewOrderPage() {
                         </option>
                       ))}
                     </select>
+                    <input type="hidden" {...register(`items.${index}.product_name`)} />
                     {errors.items?.[index]?.product_id && (
                       <p className="mt-1 text-xs text-red-600">
                         {errors.items[index].product_id?.message}

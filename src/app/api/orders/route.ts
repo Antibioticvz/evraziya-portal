@@ -85,13 +85,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: orderError.message }, { status: 500 })
   }
 
-  // Create order items
+  // Create order items (total_price is a generated column in SQL)
   const orderItems = items.map((item) => ({
     order_id: order.id,
     product_id: item.product_id,
+    product_name: item.product_name,
     quantity: item.quantity,
     unit_price: item.unit_price,
-    total_price: item.quantity * item.unit_price,
   }))
 
   const { error: itemsError } = await supabase.from('order_items').insert(orderItems)

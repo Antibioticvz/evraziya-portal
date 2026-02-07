@@ -5,7 +5,7 @@ export type OrderStatus =
   | 'draft'
   | 'pending'
   | 'confirmed'
-  | 'in_progress'
+  | 'processing'
   | 'shipped'
   | 'delivered'
   | 'cancelled'
@@ -136,7 +136,7 @@ export interface BrandImage {
 
 export interface Order {
   id: string
-  number: string
+  order_number: string
   client_id: string
   status: OrderStatus
   total_amount: number
@@ -156,6 +156,7 @@ export interface OrderItem {
   id: string
   order_id: string
   product_id: string
+  product_name: string
   quantity: number
   unit_price: number
   total_price: number

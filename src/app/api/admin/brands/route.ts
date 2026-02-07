@@ -60,7 +60,16 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json()
-  const { name, slug, description, logo_url, sort_order, is_active } = body
+  const {
+    name,
+    slug,
+    short_description,
+    full_description,
+    logo_url,
+    hero_image_url,
+    sort_order,
+    is_active,
+  } = body
 
   if (!name || !slug) {
     return NextResponse.json({ error: 'Название и slug обязательны' }, { status: 400 })
@@ -78,8 +87,10 @@ export async function POST(request: Request) {
     .insert({
       name,
       slug,
-      description: description || null,
+      short_description: short_description || null,
+      full_description: full_description || null,
       logo_url: logo_url || null,
+      hero_image_url: hero_image_url || null,
       sort_order: sort_order ?? 0,
       is_active: is_active ?? true,
     })

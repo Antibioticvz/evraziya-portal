@@ -6,7 +6,7 @@ const orderStatusValues: [OrderStatus, ...OrderStatus[]] = [
   'draft',
   'pending',
   'confirmed',
-  'in_progress',
+  'processing',
   'shipped',
   'delivered',
   'cancelled',
@@ -16,6 +16,7 @@ export const orderStatusEnum = z.enum(orderStatusValues)
 
 export const orderItemSchema = z.object({
   product_id: z.string().uuid('Некорректный ID товара'),
+  product_name: z.string().min(1, 'Укажите название товара'),
   quantity: z
     .number()
     .int('Количество должно быть целым числом')

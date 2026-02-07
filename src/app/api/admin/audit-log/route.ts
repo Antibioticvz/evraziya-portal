@@ -42,8 +42,8 @@ export async function GET(request: NextRequest) {
   const offset = (page - 1) * limit
 
   let query = supabase
-    .from('audit_logs')
-    .select('*, profiles(full_name, email)', { count: 'exact' })
+    .from('audit_log')
+    .select('*, user:profiles(full_name, email)', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(offset, offset + limit - 1)
 

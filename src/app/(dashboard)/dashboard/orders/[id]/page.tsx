@@ -11,6 +11,7 @@ interface OrderDetailItem {
   id: string
   order_id: string
   product_id: string
+  product_name: string
   quantity: number
   unit_price: number
   total_price: number
@@ -19,7 +20,7 @@ interface OrderDetailItem {
 
 interface OrderDetail {
   id: string
-  number: string
+  order_number: string
   client_id: string
   status: OrderStatus
   total_amount: number
@@ -37,7 +38,7 @@ const statusStyles: Record<string, string> = {
   draft: 'bg-gray-100 text-gray-700',
   pending: 'bg-yellow-100 text-yellow-700',
   confirmed: 'bg-blue-100 text-blue-700',
-  in_progress: 'bg-purple-100 text-purple-700',
+  processing: 'bg-purple-100 text-purple-700',
   shipped: 'bg-orange-100 text-orange-700',
   delivered: 'bg-green-100 text-green-700',
   cancelled: 'bg-red-100 text-red-700',
@@ -47,7 +48,7 @@ const statusLabels: Record<string, string> = {
   draft: 'Черновик',
   pending: 'Ожидает',
   confirmed: 'Подтверждён',
-  in_progress: 'В работе',
+  processing: 'В работе',
   shipped: 'Отгружен',
   delivered: 'Доставлен',
   cancelled: 'Отменён',
@@ -56,8 +57,8 @@ const statusLabels: Record<string, string> = {
 const statusTransitions: Record<string, string[]> = {
   draft: ['pending', 'cancelled'],
   pending: ['confirmed', 'cancelled'],
-  confirmed: ['in_progress', 'cancelled'],
-  in_progress: ['shipped', 'cancelled'],
+  confirmed: ['processing', 'cancelled'],
+  processing: ['shipped', 'cancelled'],
   shipped: ['delivered'],
   delivered: [],
   cancelled: [],
@@ -167,7 +168,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-2xl font-bold text-gray-900">
-                Заказ {order.number || `#${order.id.slice(0, 8)}`}
+                Заказ {order.order_number || `#${order.id.slice(0, 8)}`}
               </h1>
               <span
                 className={cn(
@@ -228,9 +229,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                 {order.items?.length ? (
                   order.items.map((item) => (
                     <tr key={item.id}>
-                      <td className="py-3 text-sm text-gray-900">
-                        {item.product_id.slice(0, 8)}...
-                      </td>
+                      <td className="py-3 text-sm text-gray-900">{item.product_name}</td>
                       <td className="py-3 text-sm text-gray-900 text-right">{item.quantity}</td>
                       <td className="py-3 text-sm text-gray-900 text-right">
                         {formatCurrency(item.unit_price, order.currency)}
