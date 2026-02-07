@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(yarn build)",
+      "Bash(yarn dev)",
+      "Bash(yarn lint)",
+      "Bash(yarn lint:fix)",
+      "Bash(yarn type-check)",
+      "Bash(yarn format)",
+      "Bash(yarn format:check)",
+      "Bash(yarn test*)",
+      "Bash(npx shadcn@latest *)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git fetch*)",
+      "Bash(git merge*)",
+      "Bash(git stash*)",
+      "Bash(gh *)"
+    ]
+  }
+}

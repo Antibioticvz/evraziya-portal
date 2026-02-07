@@ -1,9 +1,21 @@
 # Project Instructions for Claude
 
 ## Project Overview
+
 Evraziya Portal — B2B-портал для группы компаний ЕВРАЗИЯ (оптовая дистрибуция итальянских изделий из кожи и аксессуаров).
 
+## Wave Methodology
+
+This project uses the Wave-Per-Session approach for structured feature development.
+
+- Tasks are managed via native Claude Code Tasks (TaskCreate/TaskList/TaskUpdate)
+- Set `CLAUDE_CODE_TASK_LIST_ID` before starting a feature session (convention: `evraziya-portal-<feature>`)
+- Use `/wave-start` to execute the next wave, `/wave-verify` to validate completion
+- Feature sizing: Trivial (1-2 tasks, no waves), Small (3-5, Lite mode), Medium (6-15, Standard), Large (16+, Full + worktrees)
+- See README.md for full workflow and reference tables
+
 ## Tech Stack
+
 - **Framework**: Next.js 16 (App Router) + React 19 + TypeScript 5
 - **Database/Auth**: Supabase (PostgreSQL, Auth, Realtime)
 - **Styling**: Tailwind CSS 4 + shadcn/ui + Radix UI
@@ -12,6 +24,7 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 - **Package manager**: yarn
 
 ## Build & Lint
+
 - Build: `yarn build`
 - Lint: `yarn lint`
 - Lint fix: `yarn lint:fix`
@@ -22,9 +35,11 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 - Test: (not configured yet)
 
 ## Path Aliases
+
 - `@/*` → `./src/*`
 
 ## Code Style
+
 - **No semicolons** — enforced by Prettier and ESLint (`semi: false`)
 - **Single quotes** for strings
 - **Trailing commas** everywhere
@@ -32,6 +47,7 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 - Run `yarn format` to auto-fix formatting
 
 ## Before Writing Code
+
 - Read the FULL target file — never grep or partial-read
 - Read a similar existing file as reference pattern
 - State which pattern you're following before writing
@@ -39,6 +55,7 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 - Follow existing shadcn/ui component patterns in `src/components/ui/`
 
 ## Code Conventions
+
 - Russian language for UI strings, labels, error messages
 - Russian business domain terms: ИП, ООО, ИНН, КПП, ОГРН, БИК
 - Use `cn()` from `@/lib/utils` for Tailwind class merging
@@ -49,6 +66,7 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 - Role-based access control: admin/user roles via Supabase
 
 ## Git Branching (GitHub Flow)
+
 - **main** — стабильная ветка, деплой в продакшн
 - **develop** — ветка разработки, CI проверяет каждый PR
 - Новые фичи: `feature/<описание>` (от develop)
@@ -58,6 +76,7 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 - Всегда создавай PR в целевую ветку и проси проверку
 
 ## Project Structure
+
 ```
 src/
   app/
@@ -82,10 +101,20 @@ src/
 ```
 
 ## After Writing Code
+
 - Re-read the file you wrote
 - Run `yarn build` — must pass
 - Run `yarn lint` — must pass
 - Run `yarn format:check` — must pass
 
+## Task Persistence
+
+- Always set `CLAUDE_CODE_TASK_LIST_ID` before starting a feature session
+- Convention: `evraziya-portal-<feature-name>` (e.g., `evraziya-portal-orders`)
+- Tasks persist across sessions — use `claude -c` or `claude --resume` to continue
+- Use `/tasks` to view current task list, `Ctrl+T` to toggle visibility
+
 ## Mistakes Log
+
 <!-- Every Claude error becomes a rule here. This is the shared learning mechanism. -->
+<!-- Format: - **[YYYY-MM-DD]** [category]: description → rule to prevent it -->
