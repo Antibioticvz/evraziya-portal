@@ -106,38 +106,59 @@ INSERT INTO brands (slug, name, short_description, full_description, is_active, 
     ('roberto-mantellassi', 'ROBERTO MANTELLASSI', 'Ручная кропотливая работа. «Руки — это чувства души.»', 'Фирменный аксессуар Роберто Мантелласси — это философия жизни. Браслеты рождаются без заранее задуманного дизайна или логики — они возникают из интуитивной работы руками с кожей, сосредоточенной на чувственной связи: запах, мягкость и текстура.', true, 12);
 
 -- ===========================================
--- SEED BRAND IMAGES
+-- SEED BRAND IMAGES (CDN URLs from evraziyagroup.com)
 -- ===========================================
 
 INSERT INTO brand_images (brand_id, url, alt_text, image_type, sort_order) VALUES
-    ((SELECT id FROM brands WHERE slug = 'campomaggi'), '/images/brands/campomaggi/logo.webp', 'Логотип Campomaggi', 'logo', 0),
-    ((SELECT id FROM brands WHERE slug = 'campomaggi'), '/images/brands/campomaggi/hero.webp', 'Campomaggi — коллекция сумок', 'hero', 0),
-    ((SELECT id FROM brands WHERE slug = 'campomaggi'), '/images/brands/campomaggi/gallery-1.webp', 'Campomaggi сумка через плечо', 'gallery', 1),
-    ((SELECT id FROM brands WHERE slug = 'campomaggi'), '/images/brands/campomaggi/gallery-2.webp', 'Campomaggi рюкзак', 'gallery', 2),
-    ((SELECT id FROM brands WHERE slug = 'campomaggi'), '/images/brands/campomaggi/preview.webp', 'Campomaggi превью', 'preview', 0),
-    ((SELECT id FROM brands WHERE slug = 'caterina-lucchi'), '/images/brands/caterina-lucchi/logo.webp', 'Логотип Caterina Lucchi', 'logo', 0),
-    ((SELECT id FROM brands WHERE slug = 'caterina-lucchi'), '/images/brands/caterina-lucchi/hero.webp', 'Caterina Lucchi — коллекция', 'hero', 0),
-    ((SELECT id FROM brands WHERE slug = 'caterina-lucchi'), '/images/brands/caterina-lucchi/preview.webp', 'Caterina Lucchi превью', 'preview', 0),
-    ((SELECT id FROM brands WHERE slug = '101meme'), '/images/brands/101meme/logo.webp', 'Логотип 101 MEME', 'logo', 0),
-    ((SELECT id FROM brands WHERE slug = '101meme'), '/images/brands/101meme/hero.webp', '101 MEME — коллекция сумок', 'hero', 0),
-    ((SELECT id FROM brands WHERE slug = '101meme'), '/images/brands/101meme/preview.webp', '101 MEME превью', 'preview', 0),
-    ((SELECT id FROM brands WHERE slug = 'gabs'), '/images/brands/gabs/logo.webp', 'Логотип GABS', 'logo', 0),
-    ((SELECT id FROM brands WHERE slug = 'gabs'), '/images/brands/gabs/hero.webp', 'GABS — коллекция', 'hero', 0),
-    ((SELECT id FROM brands WHERE slug = 'gabs'), '/images/brands/gabs/gallery-1.webp', 'GABS трансформер', 'gallery', 1),
-    ((SELECT id FROM brands WHERE slug = 'gabs'), '/images/brands/gabs/preview.webp', 'GABS превью', 'preview', 0);
+    ((SELECT id FROM brands WHERE slug = 'gianfranco-lotti'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/6345807/6009524/87663572/2000-4715d2d6358cf676818272e609bfe503.jpg', 'Gianfranco Lotti коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'campomaggi'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630281/2000-952daf2fdb4e9023b667bbd2d5261e73.jpg', 'Campomaggi коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'caterina-lucchi'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630252/2000-6e73816e43ce8b2e985be47c9497397f.jpg', 'Caterina Lucchi коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = '101meme'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630207/2000-ee7e61fa7e12c98e8d296a776e825689.jpg', '101MEME коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'maizena'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630077/2000-7c14f1e6b50a35b4c2bc89e1c0c4f0c3.jpg', 'Maizena коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'chiarugi'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629991/2000-91ae1f2544ce4e3a1a06c0ba57320a34.JPG', 'Chiarugi коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'gabs'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629945/2000-316939f95e2fc8b3fd4a4129b259c5dd.jpg', 'GABS коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'dr-amsterdam'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/6837174/6669200/87627998/2000-e2a0cca1d1a94e9aba959a23ad038c46.jpg', 'dR. Amsterdam коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'vilenca-holland'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/102292676/2000-8029afdd4bb6045b4495b40c70669d7f.JPG', 'Vilenca Holland коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'bear-design'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87628920/2000-721e0ce22ba901c4d14bc1d6210693c0.jpg', 'Bear Design коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'hexagona'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771107/5232384/69935939/2000-378b7edbc8eca52dcba8ee9ec8153b8e.jpg', 'Hexagona коллекция', 'preview', 0),
+    ((SELECT id FROM brands WHERE slug = 'roberto-mantellassi'), 'https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87652444/2000-a5dc2cd8cb9a080fcaf29fead30d87ba.jpeg', 'Roberto Mantellassi коллекция', 'preview', 0);
 
--- Update brands with preview_images JSONB
-UPDATE brands SET preview_images = '["/images/brands/campomaggi/preview.webp"]'
+-- Update ALL brands with preview_images JSONB (CDN URLs)
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/6345807/6009524/87663572/2000-4715d2d6358cf676818272e609bfe503.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/6345807/6009524/87663572/2000-0d998d8866baaba4ff4c6295afb7e651.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/6345807/6009524/87663572/2000-aea9d855e58dd2938de7f47de58199b3.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/6345807/6009524/87663572/2000-5be7936626e87ca5c59d444a4f021593.jpg"]'
+WHERE slug = 'gianfranco-lotti';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630281/2000-952daf2fdb4e9023b667bbd2d5261e73.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630281/2000-2805b20e8a5617f1cd7b9fc411d8cacc.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630281/2000-bf90f9c7ce33221e180439f11914584a.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630281/2000-00bfb709278204f8ff3be95141434d5e.jpg"]'
 WHERE slug = 'campomaggi';
 
-UPDATE brands SET preview_images = '["/images/brands/caterina-lucchi/preview.webp"]'
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630252/2000-6e73816e43ce8b2e985be47c9497397f.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630252/2000-c0aa14389caea69c54fcc014952b94c6.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630252/2000-539df0ac799ae2b54c8389a29ca71b9f.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630252/2000-251e76faa158438da2459d13bfd7098f.jpg"]'
 WHERE slug = 'caterina-lucchi';
 
-UPDATE brands SET preview_images = '["/images/brands/101meme/preview.webp"]'
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630207/2000-ee7e61fa7e12c98e8d296a776e825689.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630207/2000-aa963ce285ca24d551f3689797326742.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630207/2000-6bc8e2801b7ec8ace47cffba1a44a4d5.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630207/2000-7a06410709b243f6b1195805eef2e550.jpg"]'
 WHERE slug = '101meme';
 
-UPDATE brands SET preview_images = '["/images/brands/gabs/preview.webp"]'
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630077/2000-7c14f1e6b50a35b4c2bc89e1c0c4f0c3.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630077/2000-3d3e44f24c719d23f0d68c921b438762.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630077/2000-b69ae5d110dda1221a24dcd82f20857b.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87630077/2000-b3d04b95fd1a2072cb8f87f6145ee285.jpg"]'
+WHERE slug = 'maizena';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629991/2000-91ae1f2544ce4e3a1a06c0ba57320a34.JPG","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629991/2000-f548e7b6129ab70fc80db9e8bfd16428.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629991/2000-be8cc5eeaf863f858e441b1b45575ba2.JPG","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629991/2000-c67de1355a901ff71d4a8c3c3a92120d.jpg"]'
+WHERE slug = 'chiarugi';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629945/2000-316939f95e2fc8b3fd4a4129b259c5dd.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629945/2000-822f426c6f9239f35cb08c4b5c749bcd.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629945/2000-df9b923356909bc9692c1399760fa938.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87629945/2000-deb7d3909d48ec2c27a0348c98b453c2.jpg"]'
 WHERE slug = 'gabs';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/6837174/6669200/87627998/2000-e2a0cca1d1a94e9aba959a23ad038c46.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/6837174/6669200/87627998/2000-034c79a63d44fb85b9b62376f77a54fa.jpg"]'
+WHERE slug = 'dr-amsterdam';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/102292676/2000-8029afdd4bb6045b4495b40c70669d7f.JPG","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/102292676/2000-e099541980842718204ddc5373168cf7.JPG","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/102292676/2000-29b158a72b4830b049e3f2855ea2517e.JPG","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/102292676/2000-ec62626dc0d3557c64c0179e524b541f.JPG"]'
+WHERE slug = 'vilenca-holland';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87628920/2000-721e0ce22ba901c4d14bc1d6210693c0.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87628920/2000-4920ca3345f83ec68eb1e18d89a4a880.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87628920/2000-7afbb20d8e46a6c1263ea04c13f33134.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87628920/2000-cfc12047c02a244da9b21d0328772a5f.jpg"]'
+WHERE slug = 'bear-design';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771107/5232384/69935939/2000-378b7edbc8eca52dcba8ee9ec8153b8e.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771107/5232384/69935939/2000-88b9073aff76a6af51a3ff10a7d2718b.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771107/5232384/68686898/2000-7a0d71fc64d251f26398eec185ee3390.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771107/5232384/68686899/2000-392c9b22225584602dbc4d3ee5c52b45.jpg"]'
+WHERE slug = 'hexagona';
+
+UPDATE brands SET preview_images = '["https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87652444/2000-a5dc2cd8cb9a080fcaf29fead30d87ba.jpeg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87652444/2000-d4c35c7aad8f5aca81ce2f3022466dae.jpeg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87652444/2000-af4b8f4cb30bbf709433852cc5b48270.jpg","https://cdn-st2.vigbo.com/u57016/95830/blog/5771001/5232231/87652444/2000-0af319a26ad63b27a4367bb426c71068.jpg"]'
+WHERE slug = 'roberto-mantellassi';
 
 -- ===========================================
 -- SEED CLIENTS (for order seed data)
