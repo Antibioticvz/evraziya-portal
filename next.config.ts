@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn-st2.vigbo.com',
-        pathname: '/**',
+        pathname: '/u57016/**',
       },
       {
         protocol: 'https',

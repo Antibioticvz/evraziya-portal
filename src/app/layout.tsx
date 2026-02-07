@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { QueryProvider } from '@/components/providers/query-provider'
@@ -36,6 +36,12 @@ export const metadata: Metadata = {
     description:
       'B2B портал оптовой компании EVRAZIYA Group. Дистрибуция европейских брендов кожаных сумок и аксессуаров.',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#03000d',
 }
 
 export default function RootLayout({

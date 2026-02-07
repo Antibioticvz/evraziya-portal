@@ -3,8 +3,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createStaticClient } from '@/lib/supabase/static'
 import { staticBrands } from '@/lib/brands-data'
-import { ImageSlider } from '@/components/shared/image-slider'
-import { ImageGallery } from '@/components/shared/image-gallery'
+import dynamic from 'next/dynamic'
+
+const ImageSlider = dynamic(() =>
+  import('@/components/shared/image-slider').then((mod) => mod.ImageSlider),
+)
+const ImageGallery = dynamic(() =>
+  import('@/components/shared/image-gallery').then((mod) => mod.ImageGallery),
+)
 import type { Brand, Product } from '@/types/database'
 
 async function getBrand(slug: string): Promise<Brand | null> {
