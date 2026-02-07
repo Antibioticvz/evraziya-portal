@@ -112,7 +112,7 @@ export default function OrdersPage() {
         </div>
       ) : (
         <>
-          <div className="bg-white shadow rounded-xl overflow-hidden">
+          <div className="bg-white shadow rounded-xl overflow-hidden overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -190,7 +190,7 @@ export default function OrdersPage() {
 
           {/* Pagination */}
           {data && data.pagination.totalPages > 1 && (
-            <div className="mt-6 flex items-center justify-between">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
               <p className="text-sm text-gray-500">Всего: {data.pagination.total} заказов</p>
               <div className="flex gap-2">
                 <Button

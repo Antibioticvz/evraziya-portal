@@ -27,13 +27,13 @@ export function ImageSlider({ images, alt, className }: ImageSliderProps) {
   if (!images || images.length === 0) return null
 
   return (
-    <div className={cn('relative w-[80%] mx-auto group', className)}>
+    <div className={cn('relative w-full px-4 sm:w-[80%] sm:px-0 mx-auto group', className)}>
       <button
         onClick={() => scroll('left')}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full z-10 w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 sm:-translate-x-full flex items-center justify-center bg-black/40 sm:bg-transparent rounded-full text-white/80 hover:text-white transition-colors sm:opacity-0 sm:group-hover:opacity-100"
         aria-label="Предыдущий слайд"
       >
-        <ChevronLeft className="h-8 w-8" />
+        <ChevronLeft className="h-5 w-5 sm:h-8 sm:w-8" />
       </button>
 
       <div
@@ -60,10 +60,10 @@ export function ImageSlider({ images, alt, className }: ImageSliderProps) {
 
       <button
         onClick={() => scroll('right')}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full z-10 w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 sm:translate-x-full flex items-center justify-center bg-black/40 sm:bg-transparent rounded-full text-white/80 hover:text-white transition-colors sm:opacity-0 sm:group-hover:opacity-100"
         aria-label="Следующий слайд"
       >
-        <ChevronRight className="h-8 w-8" />
+        <ChevronRight className="h-5 w-5 sm:h-8 sm:w-8" />
       </button>
     </div>
   )

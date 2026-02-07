@@ -22,12 +22,13 @@ export default function HomePage() {
 
         <div className="relative z-10 container mx-auto px-4">
           <div className="flex flex-col items-center text-center">
-            <div className="mb-6">
+            <div className="mb-6 w-full max-w-70 sm:max-w-100">
               <Image
                 src="https://cdn-st2.vigbo.com/u57016/95830/blog/5770971/5232192/82741377/2000-c7375fcb1e4ca522769b59cd7fa5f6a9.png"
                 alt="EVRAZIYA"
                 width={400}
                 height={103}
+                className="w-full h-auto"
                 priority
               />
             </div>

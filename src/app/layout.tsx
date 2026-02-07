@@ -46,6 +46,25 @@ export default function RootLayout({
   return (
     <html lang="ru" className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-background antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'EVRAZIYA Group',
+              url: 'https://evraziyagroup.com',
+              description:
+                'B2B портал оптовой компании EVRAZIYA Group. Дистрибуция европейских брендов кожаных сумок и аксессуаров в России.',
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+7-499-126-75-60',
+                contactType: 'sales',
+                availableLanguage: 'Russian',
+              },
+            }),
+          }}
+        />
         <QueryProvider>
           <ToastProvider>{children}</ToastProvider>
         </QueryProvider>
