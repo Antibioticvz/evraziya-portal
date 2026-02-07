@@ -259,6 +259,15 @@ claude
 | `NEXT_PUBLIC_APP_URL`           | URL приложения                      |
 | `NEXT_PUBLIC_APP_NAME`          | Название приложения                 |
 
+## Тестовые учётные записи (seed)
+
+После `supabase db reset` доступны:
+
+| Роль         | Email                     | Пароль      |
+| ------------ | ------------------------- | ----------- |
+| Админ        | `admin@evraziyagroup.com` | `Admin123!` |
+| Пользователь | `user@evraziyagroup.com`  | `User123!`  |
+
 ## Git-стратегия
 
 Проект использует **GitHub Flow** с ветками:

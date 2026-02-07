@@ -103,12 +103,14 @@ F1: design-system-brands ──────────┐
 
 ### Критерии приёмки F1
 
-- [ ] Все 8 цветов EVRAZIYA как Tailwind-классы
-- [ ] Inter рендерится, `.font-cyntho` доступен
-- [ ] Brand interface расширен полем preview_images
-- [ ] 12 брендов с описаниями и CDN URL
-- [ ] Header: 15 ссылок → `/brendy/[slug]`
-- [ ] `yarn build && yarn lint` проходят
+- [x] Все 8 цветов EVRAZIYA как Tailwind-классы
+- [x] Inter рендерится, `.font-cyntho` доступен
+- [x] Brand interface расширен полем preview_images
+- [x] 12 брендов с описаниями и CDN URL
+- [x] Header: 15 ссылок → `/brendy/[slug]`
+- [x] `yarn build && yarn lint` проходят
+
+**Коммит:** `ce0b851 feat: implement design system colors, fonts, 12 brands data, and header navigation`
 
 ---
 
@@ -166,17 +168,19 @@ F1: design-system-brands ──────────┐
 
 ### Критерии приёмки F2
 
-- [ ] ImageSlider с touch/swipe и стрелками
-- [ ] ImageGallery masonry (4/2/1 колонки)
-- [ ] BrandCard по дизайну аудита
-- [ ] Главная: hero 100vh с CDN изображениями
-- [ ] /brendy: 12 карточек с слайдерами
-- [ ] /brendy/[slug]: layout по аудиту + masonry галерея
-- [ ] /kontakty: 3 колонки + форма
-- [ ] Footer обновлён
-- [ ] Fade-in анимации
-- [ ] SEO мета-теги
-- [ ] `yarn build && yarn lint` проходят
+- [x] ImageSlider с touch/swipe и стрелками
+- [x] ImageGallery masonry (4/2/1 колонки) — реализовано как CSS grid (2/3/4 колонки) с lightbox
+- [x] BrandCard по дизайну аудита — размещён в `components/shared/` (не features/brands/)
+- [x] Главная: hero 100vh с CDN изображениями
+- [x] /brendy: 12 карточек с слайдерами
+- [x] /brendy/[slug]: layout по аудиту + галерея с lightbox
+- [x] /kontakty: 2 колонки (контакты + форма), дизайн-система
+- [x] Footer обновлён — 3 колонки: инфо, бренды, контакты
+- [ ] Fade-in анимации — **не реализовано** (Framer Motion не добавлен, решение: CSS transitions)
+- [x] SEO мета-теги — перенесено в F5 (#31), generateMetadata уже был
+- [x] `yarn build && yarn lint` проходят
+
+**Коммит:** `a605bab feat: redesign marketing pages with brand components and design system`
 
 ---
 
@@ -223,13 +227,15 @@ F1: design-system-brands ──────────┐
 
 ### Критерии приёмки F3
 
-- [ ] CRUD API для заказов (5 endpoints)
-- [ ] Zod валидация
-- [ ] Список с фильтрами и пагинацией
-- [ ] Форма создания с динамическими позициями
-- [ ] Детали с изменением статуса
-- [ ] Навигация обновлена
-- [ ] `yarn build && yarn lint` проходят
+- [x] CRUD API для заказов (5 endpoints) — GET list, POST, GET detail, PATCH (нет DELETE)
+- [x] Zod валидация — orderStatusEnum, orderItemSchema, createOrderSchema, updateOrderSchema
+- [x] Список с фильтрами и пагинацией
+- [x] Форма создания с динамическими позициями — React Hook Form + useFieldArray
+- [x] Детали с изменением статуса
+- [x] Навигация обновлена — ссылка уже была в layout
+- [x] `yarn build && yarn lint` проходят
+
+**Коммит:** `a3ef393 feat: implement orders management with API routes and dashboard pages`
 
 ---
 
@@ -266,11 +272,13 @@ F1: design-system-brands ──────────┐
 
 ### Критерии приёмки F4
 
-- [ ] CRUD заявок со сменой статуса
-- [ ] CRUD брендов с is_active toggle
-- [ ] Аудит лог с фильтрами и JSON diff
-- [ ] Навигация админки обновлена
-- [ ] `yarn build && yarn lint` проходят
+- [x] CRUD заявок со сменой статуса — фильтры по статусу, заметки, раскрывающиеся строки
+- [x] CRUD брендов с is_active toggle — модалка добавления/редактирования, подтверждение удаления
+- [x] Аудит лог с фильтрами и JSON diff — раскрывающиеся строки с old_data/new_data
+- [x] Навигация админки обновлена — 3 ссылки: Заявки, Бренды, Аудит лог
+- [x] `yarn build && yarn lint` проходят
+
+**Коммит:** `f26a310 feat: expand admin panel with contact requests, brands CRUD, and audit log`
 
 ---
 
@@ -309,12 +317,17 @@ F1: design-system-brands ──────────┐
 
 ### Критерии приёмки F5
 
-- [ ] sitemap.xml + robots.txt генерируются
-- [ ] JSON-LD валиден
-- [ ] Нет overflow на мобиле
-- [ ] Loading/Error/NotFound для всех route groups
-- [ ] Images оптимизированы
-- [ ] `yarn build && yarn lint` проходят
+- [x] sitemap.xml + robots.txt генерируются — 12 brand URLs + static routes
+- [x] JSON-LD валиден — Organization schema в layout.tsx
+- [x] Нет overflow на мобиле — hero logo, slider arrows, orders table, header menu
+- [x] Loading/Error/NotFound для всех route groups — marketing + dashboard
+- [x] Images оптимизированы — dynamic imports для ImageSlider/ImageGallery, tighter CDN pattern
+- [x] `yarn build && yarn lint` проходят
+
+**Коммиты:**
+
+- `f6a8174 feat: add SEO, loading/error states, and mobile responsiveness improvements`
+- `f3db711 perf: add dynamic imports, viewport meta, and tighten image CDN pattern`
 
 ---
 
@@ -439,3 +452,53 @@ git add -A && git commit -m "chore: SEO, mobile QA, performance, error boundarie
 git push -u origin chore/quality-polish
 gh pr create --base develop --title "chore: quality & polish"
 ```
+
+---
+
+## Итоги реализации
+
+**Дата завершения:** 2026-02-08
+**Ветка:** `feature/design-system-brands` (все фичи в одной ветке)
+**Верификация:** `yarn build` + `yarn lint` + `yarn format:check` + `yarn type-check` — все OK
+
+### Коммиты (от старого к новому)
+
+| Коммит    | Описание                                                        |
+| --------- | --------------------------------------------------------------- |
+| `ce0b851` | feat: design system colors, fonts, 12 brands data, header nav   |
+| `a605bab` | feat: redesign marketing pages with brand components            |
+| `a3ef393` | feat: implement orders management with API routes and dashboard |
+| `f26a310` | feat: expand admin panel with contact requests, brands, audit   |
+| `f6a8174` | feat: add SEO, loading/error states, and mobile responsiveness  |
+| `f3db711` | perf: add dynamic imports, viewport meta, tighten image CDN     |
+
+### Что реализовано (28/29 задач)
+
+- **F1** (5/5): Дизайн-система, шрифты, Brand type, 12 брендов, навигация
+- **F2** (9/10): Компоненты (ImageSlider, ImageGallery, BrandCard), 4 страницы, Footer
+- **F3** (6/6): Zod-валидация, API routes, 3 dashboard-страницы, навигация
+- **F4** (4/4): Заявки, бренды CRUD, аудит лог, навигация админки
+- **F5** (4/4): SEO, мобильная адаптация, loading/error/not-found, оптимизация
+
+### Что не реализовано
+
+| #   | Задача                         | Причина                                               | Приоритет |
+| --- | ------------------------------ | ----------------------------------------------------- | --------- |
+| #19 | Framer Motion fade-in анимации | Библиотека не установлена, CSS transitions достаточны | Низкий    |
+
+### Отличия от плана
+
+- **Все фичи в одной ветке** `feature/design-system-brands` вместо отдельных веток — упрощение для текущего этапа
+- **BrandCard** в `components/shared/` вместо `components/features/brands/` — единообразие с остальными компонентами
+- **ImageGallery** — CSS grid вместо masonry, с полноценным lightbox
+- **/kontakty** — 2 колонки вместо 3, без карты (данных адреса нет)
+- **SEO мета-теги** (#20) объединены с F5-SEO (#31) — generateMetadata уже был в [slug]/page.tsx
+
+### Что нужно дальше
+
+- [ ] Supabase миграции для таблиц: `orders`, `order_items`, `contact_requests`, `audit_log`
+- [ ] Подключение реальных данных вместо статических fallback-ов
+- [ ] Тесты (unit + integration) — не настроены ещё
+- [ ] Push и создание PR в develop
+- [ ] Framer Motion анимации (опционально, низкий приоритет)
+- [ ] Supabase Storage для загрузки изображений брендов в админке

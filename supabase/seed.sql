@@ -1,4 +1,96 @@
--- Seed brands from evraziyagroup.com
+-- ===========================================
+-- SEED USERS (admin + user)
+-- ===========================================
+-- Admin:  admin@evraziyagroup.com / Admin123!
+-- User:   user@evraziyagroup.com  / User123!
+
+-- Create admin user
+INSERT INTO auth.users (
+    instance_id, id, aud, role, email, encrypted_password,
+    email_confirmed_at, raw_app_meta_data, raw_user_meta_data,
+    created_at, updated_at, confirmation_token, recovery_token,
+    email_change_token_new, email_change
+) VALUES (
+    '00000000-0000-0000-0000-000000000000',
+    'a0000000-0000-0000-0000-000000000001',
+    'authenticated',
+    'authenticated',
+    'admin@evraziyagroup.com',
+    crypt('Admin123!', gen_salt('bf')),
+    NOW(),
+    '{"provider": "email", "providers": ["email"]}',
+    '{"full_name": "Администратор"}',
+    NOW(),
+    NOW(),
+    '', '', '', ''
+);
+
+INSERT INTO auth.identities (
+    id, user_id, identity_data, provider, provider_id,
+    last_sign_in_at, created_at, updated_at
+) VALUES (
+    'a0000000-0000-0000-0000-000000000001',
+    'a0000000-0000-0000-0000-000000000001',
+    jsonb_build_object('sub', 'a0000000-0000-0000-0000-000000000001', 'email', 'admin@evraziyagroup.com'),
+    'email',
+    'a0000000-0000-0000-0000-000000000001',
+    NOW(),
+    NOW(),
+    NOW()
+);
+
+-- Set admin role (trigger created profile with default 'user' role)
+UPDATE profiles
+SET role_id = (SELECT id FROM roles WHERE name = 'admin'),
+    full_name = 'Администратор',
+    phone = '+7 499 126 75 60'
+WHERE id = 'a0000000-0000-0000-0000-000000000001';
+
+-- Create regular user
+INSERT INTO auth.users (
+    instance_id, id, aud, role, email, encrypted_password,
+    email_confirmed_at, raw_app_meta_data, raw_user_meta_data,
+    created_at, updated_at, confirmation_token, recovery_token,
+    email_change_token_new, email_change
+) VALUES (
+    '00000000-0000-0000-0000-000000000000',
+    'b0000000-0000-0000-0000-000000000002',
+    'authenticated',
+    'authenticated',
+    'user@evraziyagroup.com',
+    crypt('User123!', gen_salt('bf')),
+    NOW(),
+    '{"provider": "email", "providers": ["email"]}',
+    '{"full_name": "Менеджер"}',
+    NOW(),
+    NOW(),
+    '', '', '', ''
+);
+
+INSERT INTO auth.identities (
+    id, user_id, identity_data, provider, provider_id,
+    last_sign_in_at, created_at, updated_at
+) VALUES (
+    'b0000000-0000-0000-0000-000000000002',
+    'b0000000-0000-0000-0000-000000000002',
+    jsonb_build_object('sub', 'b0000000-0000-0000-0000-000000000002', 'email', 'user@evraziyagroup.com'),
+    'email',
+    'b0000000-0000-0000-0000-000000000002',
+    NOW(),
+    NOW(),
+    NOW()
+);
+
+-- Update regular user profile name
+UPDATE profiles
+SET full_name = 'Менеджер',
+    phone = '+7 933 399 03 72'
+WHERE id = 'b0000000-0000-0000-0000-000000000002';
+
+-- ===========================================
+-- SEED BRANDS
+-- ===========================================
+
 INSERT INTO brands (slug, name, short_description, full_description, is_active, sort_order) VALUES
     ('campomaggi', 'CAMPOMAGGI', 'Кожа, абсолютный герой всех коллекций Campomaggi, является живым материалом, который может быть сформирован и обработан без изменения.', 'Руководствуясь идеей создания сумок и предметов, которые отражают это, Марко Кампомаджи думает, мечтает и разрабатывает коллекции, в которых древнее искусство обработки кожи сочетается с творчеством, точностью в деталях и почти маниакальной осторожностью в ремесленном процессе.', true, 1),
     ('caterina-lucchi', 'CATERINA LUCCHI', 'Художественное использование цветов, способность играть с различными материалами, утонченная женственность и устойчивое производство являются основными характеристиками бренда.', NULL, true, 2),
