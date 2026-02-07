@@ -176,11 +176,14 @@ F1: design-system-brands ──────────┐
 - [x] /brendy/[slug]: layout по аудиту + галерея с lightbox
 - [x] /kontakty: 2 колонки (контакты + форма), дизайн-система
 - [x] Footer обновлён — 3 колонки: инфо, бренды, контакты
-- [ ] Fade-in анимации — **не реализовано** (Framer Motion не добавлен, решение: CSS transitions)
+- [x] Fade-in анимации — FadeIn компонент (framer-motion whileInView) на всех 4 маркетинговых страницах
 - [x] SEO мета-теги — перенесено в F5 (#31), generateMetadata уже был
 - [x] `yarn build && yarn lint` проходят
 
-**Коммит:** `a605bab feat: redesign marketing pages with brand components and design system`
+**Коммиты:**
+
+- `a605bab feat: redesign marketing pages with brand components and design system`
+- FadeIn анимации добавлены (framer-motion whileInView) на все маркетинговые страницы
 
 ---
 
@@ -475,16 +478,18 @@ gh pr create --base develop --title "chore: quality & polish"
 ### Что реализовано (28/29 задач)
 
 - **F1** (5/5): Дизайн-система, шрифты, Brand type, 12 брендов, навигация
-- **F2** (9/10): Компоненты (ImageSlider, ImageGallery, BrandCard), 4 страницы, Footer
+- **F2** (10/10): Компоненты (ImageSlider, ImageGallery, BrandCard, FadeIn), 4 страницы, Footer
 - **F3** (6/6): Zod-валидация, API routes, 3 dashboard-страницы, навигация
 - **F4** (4/4): Заявки, бренды CRUD, аудит лог, навигация админки
 - **F5** (4/4): SEO, мобильная адаптация, loading/error/not-found, оптимизация
 
-### Что не реализовано
+### Что реализовано дополнительно (сессия 2)
 
-| #   | Задача                         | Причина                                               | Приоритет |
-| --- | ------------------------------ | ----------------------------------------------------- | --------- |
-| #19 | Framer Motion fade-in анимации | Библиотека не установлена, CSS transitions достаточны | Низкий    |
+- [x] **#19 FadeIn анимации** — `components/shared/fade-in.tsx` (framer-motion whileInView), добавлен на все 4 маркетинговые страницы
+- [x] **Supabase миграция** — `supabase/migrations/20260208000001_schema_alignment.sql`: audit_log, brand_images таблицы, недостающие колонки в orders/order_items/contact_requests, audit triggers
+- [x] **API alignment** — все API routes и dashboard pages выровнены с SQL-схемой (order_number, processing status, product_name)
+- [x] **Vitest тесты** — 40 тестов (utils, order validation, fade-in, brands-data), vitest.config.ts, `yarn test`
+- [x] **Seed data** — brand_images, clients, products, orders, order_items, contact_requests, audit_log
 
 ### Отличия от плана
 
@@ -496,9 +501,7 @@ gh pr create --base develop --title "chore: quality & polish"
 
 ### Что нужно дальше
 
-- [ ] Supabase миграции для таблиц: `orders`, `order_items`, `contact_requests`, `audit_log`
-- [ ] Подключение реальных данных вместо статических fallback-ов
-- [ ] Тесты (unit + integration) — не настроены ещё
 - [ ] Push и создание PR в develop
-- [ ] Framer Motion анимации (опционально, низкий приоритет)
 - [ ] Supabase Storage для загрузки изображений брендов в админке
+- [ ] Integration тесты (API routes, dashboard pages)
+- [ ] E2E тесты (Playwright)
