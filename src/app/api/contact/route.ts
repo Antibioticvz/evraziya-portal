@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       success: true,
       message: 'Заявка успешно отправлена',
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Contact form error:', error)
     return NextResponse.json({ error: 'Ошибка при отправке формы' }, { status: 500 })
   }

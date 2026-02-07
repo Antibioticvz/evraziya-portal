@@ -1,0 +1,7 @@
+echo "🔍 Pre-push: checking types, lint, and build..."
+
+yarn type-check || { echo "❌ Type check failed. Push rejected."; exit 1; }
+yarn lint || { echo "❌ Lint failed. Push rejected."; exit 1; }
+yarn build || { echo "❌ Build failed. Push rejected."; exit 1; }
+
+echo "✅ All checks passed."

@@ -21,7 +21,7 @@ async function getBrand(slug: string) {
     }
 
     return data
-  } catch (error) {
+  } catch {
     // Fallback to static data when Supabase is not available
     return staticBrands.find((b) => b.slug === slug) || null
   }
@@ -40,7 +40,7 @@ async function getBrandProducts(brandId: string) {
       .limit(8)
 
     return data || []
-  } catch (error) {
+  } catch {
     // Return empty array when Supabase is not available
     return []
   }

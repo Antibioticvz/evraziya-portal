@@ -35,25 +35,25 @@ export default function EditClientPage({ params }: { params: Promise<{ id: strin
   const [clientId, setClientId] = useState<string>('')
 
   useEffect(() => {
-    params.then(({ id }) => {
-      setClientId(id)
-      loadClient(id)
-    })
-  }, [params])
+    const load = async (id: string) => {
+      const supabase = createClient()
+      const { data, error } = await supabase.from('clients').select('*').eq('id', id).single()
 
-  const loadClient = async (id: string) => {
-    const supabase = createClient()
-    const { data, error } = await supabase.from('clients').select('*').eq('id', id).single()
+      if (error || !data) {
+        setError('Клиент не найден')
+        setLoading(false)
+        return
+      }
 
-    if (error || !data) {
-      setError('Клиент не найден')
+      setClient(data)
       setLoading(false)
-      return
     }
 
-    setClient(data)
-    setLoading(false)
-  }
+    params.then(({ id }) => {
+      setClientId(id)
+      load(id)
+    })
+  }, [params])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

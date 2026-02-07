@@ -10,7 +10,21 @@
     "lint:fix": "eslint --fix",
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,json}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,json}\""
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,json}\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,json,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -50,6 +64,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
