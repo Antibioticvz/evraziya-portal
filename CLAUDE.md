@@ -14,6 +14,8 @@ Evraziya Portal — B2B-портал для группы компаний ЕВР
 ## Build & Lint
 - Build: `npm run build`
 - Lint: `npm run lint`
+- Lint fix: `npm run lint:fix`
+- Type check: `npm run type-check`
 - Dev: `npm run dev`
 - Test: (not configured yet)
 
