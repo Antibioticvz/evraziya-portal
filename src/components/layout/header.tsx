@@ -47,7 +47,7 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   'text-xs text-white/80 hover:text-white transition-colors uppercase tracking-wide',
-                  pathname === link.href && 'text-white border-b border-primary'
+                  pathname === link.href && 'text-white border-b border-primary',
                 )}
               >
                 {link.label}
@@ -61,7 +61,7 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   'text-xs text-white/80 hover:text-white transition-colors uppercase tracking-wide',
-                  pathname === link.href && 'text-white border-b border-primary'
+                  pathname === link.href && 'text-white border-b border-primary',
                 )}
               >
                 {link.label}
@@ -96,7 +96,7 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
                     'text-sm text-white/80 hover:text-white py-2 uppercase tracking-wide',
-                    pathname === link.href && 'text-primary'
+                    pathname === link.href && 'text-primary',
                   )}
                 >
                   {link.label}

@@ -26,11 +26,7 @@ interface Client {
   notes: string | null
 }
 
-export default function EditClientPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
+export default function EditClientPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -47,11 +43,7 @@ export default function EditClientPage({
 
   const loadClient = async (id: string) => {
     const supabase = createClient()
-    const { data, error } = await supabase
-      .from('clients')
-      .select('*')
-      .eq('id', id)
-      .single()
+    const { data, error } = await supabase.from('clients').select('*').eq('id', id).single()
 
     if (error || !data) {
       setError('Клиент не найден')
@@ -85,10 +77,7 @@ export default function EditClientPage({
       status: formData.get('status'),
     }
 
-    const { error: updateError } = await supabase
-      .from('clients')
-      .update(updates)
-      .eq('id', clientId)
+    const { error: updateError } = await supabase.from('clients').update(updates).eq('id', clientId)
 
     if (updateError) {
       setError(updateError.message)
@@ -129,12 +118,8 @@ export default function EditClientPage({
           <ArrowLeftIcon className="h-4 w-4" />
           Назад к клиенту
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900 mt-4">
-          Редактирование клиента
-        </h1>
-        <p className="mt-1 text-sm text-gray-500">
-          {client.company_name}
-        </p>
+        <h1 className="text-2xl font-bold text-gray-900 mt-4">Редактирование клиента</h1>
+        <p className="mt-1 text-sm text-gray-500">{client.company_name}</p>
       </div>
 
       <div className="bg-white shadow rounded-xl p-6 max-w-3xl">
@@ -147,9 +132,7 @@ export default function EditClientPage({
 
           {/* Status */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Статус
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Статус</label>
             <select
               name="status"
               defaultValue={client.status}
@@ -180,11 +163,7 @@ export default function EditClientPage({
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Торговое наименование
                 </label>
-                <Input
-                  type="text"
-                  name="trade_name"
-                  defaultValue={client.trade_name || ''}
-                />
+                <Input type="text" name="trade_name" defaultValue={client.trade_name || ''} />
               </div>
             </div>
           </div>
@@ -193,29 +172,15 @@ export default function EditClientPage({
             <h3 className="text-lg font-medium text-gray-900 mb-4">Реквизиты</h3>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  ИНН
-                </label>
-                <Input
-                  type="text"
-                  value={client.inn}
-                  disabled
-                  className="bg-gray-50"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">ИНН</label>
+                <Input type="text" value={client.inn} disabled className="bg-gray-50" />
                 <p className="mt-1 text-xs text-gray-500">ИНН нельзя изменить</p>
               </div>
 
               {client.client_type === 'ooo' && client.kpp && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    КПП
-                  </label>
-                  <Input
-                    type="text"
-                    value={client.kpp}
-                    disabled
-                    className="bg-gray-50"
-                  />
+                  <label className="block text-sm font-medium text-gray-700 mb-1">КПП</label>
+                  <Input type="text" value={client.kpp} disabled className="bg-gray-50" />
                 </div>
               )}
 
@@ -223,12 +188,7 @@ export default function EditClientPage({
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   {client.client_type === 'ip' ? 'ОГРНИП' : 'ОГРН'}
                 </label>
-                <Input
-                  type="text"
-                  value={client.ogrn}
-                  disabled
-                  className="bg-gray-50"
-                />
+                <Input type="text" value={client.ogrn} disabled className="bg-gray-50" />
               </div>
             </div>
           </div>
@@ -268,22 +228,12 @@ export default function EditClientPage({
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   ФИО руководителя
                 </label>
-                <Input
-                  type="text"
-                  name="ceo_name"
-                  defaultValue={client.ceo_name || ''}
-                />
+                <Input type="text" name="ceo_name" defaultValue={client.ceo_name || ''} />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Должность
-                </label>
-                <Input
-                  type="text"
-                  name="ceo_position"
-                  defaultValue={client.ceo_position || ''}
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Должность</label>
+                <Input type="text" name="ceo_position" defaultValue={client.ceo_position || ''} />
               </div>
             </div>
           </div>
@@ -292,36 +242,18 @@ export default function EditClientPage({
             <h3 className="text-lg font-medium text-gray-900 mb-4">Контакты</h3>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Телефон
-                </label>
-                <Input
-                  type="tel"
-                  name="phone"
-                  defaultValue={client.phone || ''}
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+                <Input type="tel" name="phone" defaultValue={client.phone || ''} />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <Input
-                  type="email"
-                  name="email"
-                  defaultValue={client.email || ''}
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <Input type="email" name="email" defaultValue={client.email || ''} />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Сайт
-                </label>
-                <Input
-                  type="url"
-                  name="website"
-                  defaultValue={client.website || ''}
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Сайт</label>
+                <Input type="url" name="website" defaultValue={client.website || ''} />
               </div>
             </div>
           </div>
@@ -329,9 +261,7 @@ export default function EditClientPage({
           <div className="border-t border-gray-200 pt-6 mt-6">
             <h3 className="text-lg font-medium text-gray-900 mb-4">Дополнительно</h3>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Заметки
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Заметки</label>
               <textarea
                 name="notes"
                 rows={4}
@@ -359,7 +289,13 @@ export default function EditClientPage({
 
 function ArrowLeftIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
     </svg>
   )

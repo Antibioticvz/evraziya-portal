@@ -4,7 +4,9 @@ import { UserManagement } from './user-management'
 
 async function getCurrentUser() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) return null
 
@@ -31,10 +33,7 @@ async function getUsers() {
 async function getRoles() {
   const supabase = await createClient()
 
-  const { data } = await supabase
-    .from('roles')
-    .select('*')
-    .order('name')
+  const { data } = await supabase.from('roles').select('*').order('name')
 
   return data || []
 }
@@ -46,10 +45,7 @@ export default async function AdminUsersPage() {
     redirect('/dashboard')
   }
 
-  const [users, roles] = await Promise.all([
-    getUsers(),
-    getRoles(),
-  ])
+  const [users, roles] = await Promise.all([getUsers(), getRoles()])
 
   return (
     <div>
@@ -62,11 +58,7 @@ export default async function AdminUsersPage() {
         </div>
       </div>
 
-      <UserManagement
-        initialUsers={users}
-        roles={roles}
-        currentUserId={currentUser.id}
-      />
+      <UserManagement initialUsers={users} roles={roles} currentUserId={currentUser.id} />
     </div>
   )
 }

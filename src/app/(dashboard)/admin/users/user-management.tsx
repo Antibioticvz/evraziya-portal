@@ -39,9 +39,10 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
 
-  const filteredUsers = users.filter(user =>
-    user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (user.full_name?.toLowerCase() || '').includes(searchQuery.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (user.full_name?.toLowerCase() || '').includes(searchQuery.toLowerCase()),
   )
 
   const handleCreateUser = async (formData: FormData) => {
@@ -101,7 +102,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
         throw new Error(data.error || 'Ошибка при обновлении пользователя')
       }
 
-      setUsers(users.map(u => u.id === selectedUser.id ? data.user : u))
+      setUsers(users.map((u) => (u.id === selectedUser.id ? data.user : u)))
       setShowEditModal(false)
       setSelectedUser(null)
       router.refresh()
@@ -128,7 +129,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
         throw new Error(data.error || 'Ошибка при удалении пользователя')
       }
 
-      setUsers(users.filter(u => u.id !== selectedUser.id))
+      setUsers(users.filter((u) => u.id !== selectedUser.id))
       setShowDeleteModal(false)
       setSelectedUser(null)
       router.refresh()
@@ -155,7 +156,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
         throw new Error(data.error || 'Ошибка при обновлении статуса')
       }
 
-      setUsers(users.map(u => u.id === user.id ? data.user : u))
+      setUsers(users.map((u) => (u.id === user.id ? data.user : u)))
       router.refresh()
     } catch (err: any) {
       setError(err.message)
@@ -228,11 +229,13 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      user.role?.name === 'admin'
-                        ? 'bg-purple-100 text-purple-700'
-                        : 'bg-blue-100 text-blue-700'
-                    }`}>
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        user.role?.name === 'admin'
+                          ? 'bg-purple-100 text-purple-700'
+                          : 'bg-blue-100 text-blue-700'
+                      }`}
+                    >
                       {user.role?.name === 'admin' ? 'Администратор' : 'Пользователь'}
                     </span>
                   </td>
@@ -285,10 +288,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
 
       {/* Create Modal */}
       {showCreateModal && (
-        <Modal
-          title="Добавить пользователя"
-          onClose={() => setShowCreateModal(false)}
-        >
+        <Modal title="Добавить пользователя" onClose={() => setShowCreateModal(false)}>
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -297,20 +297,11 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
           >
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email *
-                </label>
-                <Input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="user@example.com"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <Input type="email" name="email" required placeholder="user@example.com" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Пароль *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Пароль *</label>
                 <Input
                   type="password"
                   name="password"
@@ -320,29 +311,15 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Полное имя
-                </label>
-                <Input
-                  type="text"
-                  name="full_name"
-                  placeholder="Иванов Иван Иванович"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Полное имя</label>
+                <Input type="text" name="full_name" placeholder="Иванов Иван Иванович" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Телефон
-                </label>
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="+7 (999) 123-45-67"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+                <Input type="tel" name="phone" placeholder="+7 (999) 123-45-67" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Роль *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Роль *</label>
                 <select
                   name="role_id"
                   required
@@ -357,11 +334,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
               </div>
             </div>
             <div className="mt-6 flex justify-end gap-3">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setShowCreateModal(false)}
-              >
+              <Button type="button" variant="outline" onClick={() => setShowCreateModal(false)}>
                 Отмена
               </Button>
               <Button type="submit" disabled={loading}>
@@ -389,23 +362,12 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
           >
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <Input
-                  type="email"
-                  value={selectedUser.email}
-                  disabled
-                  className="bg-gray-50"
-                />
-                <p className="mt-1 text-xs text-gray-500">
-                  Email нельзя изменить
-                </p>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <Input type="email" value={selectedUser.email} disabled className="bg-gray-50" />
+                <p className="mt-1 text-xs text-gray-500">Email нельзя изменить</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Полное имя
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Полное имя</label>
                 <Input
                   type="text"
                   name="full_name"
@@ -414,9 +376,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Телефон
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
                 <Input
                   type="tel"
                   name="phone"
@@ -425,9 +385,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Роль
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Роль</label>
                 <select
                   name="role_id"
                   defaultValue={selectedUser.role_id || ''}
@@ -442,9 +400,7 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Статус
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Статус</label>
                 <select
                   name="is_active"
                   defaultValue={selectedUser.is_active ? 'true' : 'false'}
@@ -485,8 +441,8 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
           }}
         >
           <p className="text-gray-600">
-            Вы уверены, что хотите удалить пользователя{' '}
-            <strong>{selectedUser.email}</strong>? Это действие нельзя отменить.
+            Вы уверены, что хотите удалить пользователя <strong>{selectedUser.email}</strong>? Это
+            действие нельзя отменить.
           </p>
           <div className="mt-6 flex justify-end gap-3">
             <Button
@@ -525,10 +481,7 @@ function Modal({
 }) {
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div
-        className="fixed inset-0 bg-black/50 transition-opacity"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0 bg-black/50 transition-opacity" onClick={onClose} />
       <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div className="relative transform overflow-hidden rounded-xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
           <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
@@ -543,7 +496,13 @@ function Modal({
 
 function PlusIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
     </svg>
   )
@@ -551,16 +510,36 @@ function PlusIcon({ className }: { className?: string }) {
 
 function EditIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+      />
     </svg>
   )
 }
 
 function TrashIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+      />
     </svg>
   )
 }

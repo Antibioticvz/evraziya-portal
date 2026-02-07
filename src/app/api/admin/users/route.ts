@@ -4,7 +4,9 @@ import { createAdminClient } from '@/lib/supabase/admin'
 
 async function isCurrentUserAdmin() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) return { isAdmin: false, user: null }
 
@@ -68,16 +70,13 @@ export async function POST(request: Request) {
   const { email, password, full_name, phone, role_id } = body
 
   if (!email || !password) {
-    return NextResponse.json(
-      { error: 'Email и пароль обязательны' },
-      { status: 400 }
-    )
+    return NextResponse.json({ error: 'Email и пароль обязательны' }, { status: 400 })
   }
 
   if (password.length < 8) {
     return NextResponse.json(
       { error: 'Пароль должен содержать минимум 8 символов' },
-      { status: 400 }
+      { status: 400 },
     )
   }
 
@@ -96,7 +95,7 @@ export async function POST(request: Request) {
     if (createError.message.includes('already registered')) {
       return NextResponse.json(
         { error: 'Пользователь с таким email уже существует' },
-        { status: 400 }
+        { status: 400 },
       )
     }
     return NextResponse.json({ error: createError.message }, { status: 500 })

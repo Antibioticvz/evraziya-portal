@@ -3,7 +3,9 @@ import { redirect } from 'next/navigation'
 
 async function getCurrentUser() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) return null
 
@@ -28,17 +30,13 @@ export default async function AdminSettingsPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Настройки</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Общие настройки системы
-        </p>
+        <p className="mt-1 text-sm text-gray-500">Общие настройки системы</p>
       </div>
 
       <div className="space-y-6 max-w-2xl">
         {/* Company info */}
         <div className="bg-white shadow rounded-xl p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Информация о компании
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Информация о компании</h2>
           <dl className="space-y-4">
             <div>
               <dt className="text-sm text-gray-500">Название</dt>
@@ -57,9 +55,7 @@ export default async function AdminSettingsPage() {
 
         {/* System info */}
         <div className="bg-white shadow rounded-xl p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Системная информация
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Системная информация</h2>
           <dl className="space-y-4">
             <div>
               <dt className="text-sm text-gray-500">Версия</dt>
@@ -80,12 +76,9 @@ export default async function AdminSettingsPage() {
 
         {/* Danger zone */}
         <div className="bg-white shadow rounded-xl p-6 border-2 border-red-200">
-          <h2 className="text-lg font-semibold text-red-600 mb-4">
-            Опасная зона
-          </h2>
+          <h2 className="text-lg font-semibold text-red-600 mb-4">Опасная зона</h2>
           <p className="text-sm text-gray-600 mb-4">
-            Действия в этом разделе могут привести к необратимым последствиям.
-            Будьте осторожны.
+            Действия в этом разделе могут привести к необратимым последствиям. Будьте осторожны.
           </p>
           <div className="space-y-3">
             <div className="flex items-center justify-between py-3 border-t border-gray-100">

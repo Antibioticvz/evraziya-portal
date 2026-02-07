@@ -35,13 +35,13 @@ function validateOgrn(ogrn: string): boolean {
 
   if (ogrn.length === 13) {
     const num = parseInt(ogrn.slice(0, 12), 10)
-    const checkDigit = num % 11 % 10
+    const checkDigit = (num % 11) % 10
     return checkDigit === parseInt(ogrn[12], 10)
   }
 
   if (ogrn.length === 15) {
     const num = parseInt(ogrn.slice(0, 14), 10)
-    const checkDigit = num % 13 % 10
+    const checkDigit = (num % 13) % 10
     return checkDigit === parseInt(ogrn[14], 10)
   }
 
@@ -69,35 +69,41 @@ export const contactPersonSchema = z.object({
   isPrimary: z.boolean().default(false),
 })
 
-export const clientSchema = z.object({
-  typeId: z.string().uuid(),
-  companyName: z.string().min(1, 'Укажите название компании'),
-  legalName: z.string().min(1, 'Укажите полное наименование'),
-  inn: z.string().refine(validateInn, 'Некорректный ИНН'),
-  kpp: z.string().refine(val => !val || validateKpp(val), 'Некорректный КПП').optional().or(z.literal('')),
-  ogrn: z.string().refine(validateOgrn, 'Некорректный ОГРН/ОГРНИП'),
-  legalAddress: z.string().min(1, 'Укажите юридический адрес'),
-  actualAddress: z.string().optional(),
-  postalAddress: z.string().optional(),
-  directorName: z.string().optional(),
-  directorPosition: z.string().default('Генеральный директор'),
-  accountantName: z.string().optional(),
-  phone: z.string().optional(),
-  email: z.string().email('Некорректный email').optional().or(z.literal('')),
-  website: z.string().url('Некорректный URL').optional().or(z.literal('')),
-  notes: z.string().optional(),
-  bankDetails: z.array(bankDetailsSchema).optional(),
-  contacts: z.array(contactPersonSchema).optional(),
-}).refine(
-  (data) => {
-    // КПП обязателен для 10-значного ИНН (ООО)
-    if (data.inn.length === 10 && (!data.kpp || data.kpp === '')) {
-      return false
-    }
-    return true
-  },
-  { message: 'КПП обязателен для юридических лиц', path: ['kpp'] }
-)
+export const clientSchema = z
+  .object({
+    typeId: z.string().uuid(),
+    companyName: z.string().min(1, 'Укажите название компании'),
+    legalName: z.string().min(1, 'Укажите полное наименование'),
+    inn: z.string().refine(validateInn, 'Некорректный ИНН'),
+    kpp: z
+      .string()
+      .refine((val) => !val || validateKpp(val), 'Некорректный КПП')
+      .optional()
+      .or(z.literal('')),
+    ogrn: z.string().refine(validateOgrn, 'Некорректный ОГРН/ОГРНИП'),
+    legalAddress: z.string().min(1, 'Укажите юридический адрес'),
+    actualAddress: z.string().optional(),
+    postalAddress: z.string().optional(),
+    directorName: z.string().optional(),
+    directorPosition: z.string().default('Генеральный директор'),
+    accountantName: z.string().optional(),
+    phone: z.string().optional(),
+    email: z.string().email('Некорректный email').optional().or(z.literal('')),
+    website: z.string().url('Некорректный URL').optional().or(z.literal('')),
+    notes: z.string().optional(),
+    bankDetails: z.array(bankDetailsSchema).optional(),
+    contacts: z.array(contactPersonSchema).optional(),
+  })
+  .refine(
+    (data) => {
+      // КПП обязателен для 10-значного ИНН (ООО)
+      if (data.inn.length === 10 && (!data.kpp || data.kpp === '')) {
+        return false
+      }
+      return true
+    },
+    { message: 'КПП обязателен для юридических лиц', path: ['kpp'] },
+  )
 
 export type ClientFormValues = z.infer<typeof clientSchema>
 export type BankDetailsFormValues = z.infer<typeof bankDetailsSchema>

@@ -10,32 +10,27 @@ export async function POST(request: Request) {
     if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'Все обязательные поля должны быть заполнены' },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Неверный формат email' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'Неверный формат email' }, { status: 400 })
     }
 
     const supabase = await createClient()
 
     // Store the contact request in database
-    const { error: insertError } = await supabase
-      .from('contact_requests')
-      .insert({
-        name,
-        email,
-        phone,
-        company: company || null,
-        message,
-        status: 'new',
-      })
+    const { error: insertError } = await supabase.from('contact_requests').insert({
+      name,
+      email,
+      phone,
+      company: company || null,
+      message,
+      status: 'new',
+    })
 
     if (insertError) {
       console.error('Error saving contact request:', insertError)
@@ -55,9 +50,6 @@ export async function POST(request: Request) {
     })
   } catch (error: any) {
     console.error('Contact form error:', error)
-    return NextResponse.json(
-      { error: 'Ошибка при отправке формы' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Ошибка при отправке формы' }, { status: 500 })
   }
 }

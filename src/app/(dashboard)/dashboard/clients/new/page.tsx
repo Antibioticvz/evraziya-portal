@@ -35,9 +35,7 @@ export default function NewClientPage() {
       status: 'active',
     }
 
-    const { error: insertError } = await supabase
-      .from('clients')
-      .insert(clientData)
+    const { error: insertError } = await supabase.from('clients').insert(clientData)
 
     if (insertError) {
       setError(insertError.message)
@@ -60,9 +58,7 @@ export default function NewClientPage() {
           Назад к списку клиентов
         </Link>
         <h1 className="text-2xl font-bold text-gray-900 mt-4">Добавить клиента</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Заполните информацию о новом B2B клиенте
-        </p>
+        <p className="mt-1 text-sm text-gray-500">Заполните информацию о новом B2B клиенте</p>
       </div>
 
       <div className="bg-white shadow rounded-xl p-6 max-w-3xl">
@@ -75,9 +71,7 @@ export default function NewClientPage() {
 
           {/* Client Type */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Тип клиента *
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Тип клиента *</label>
             <div className="flex gap-4">
               <label className="flex items-center">
                 <input
@@ -99,7 +93,9 @@ export default function NewClientPage() {
                   onChange={() => setClientType('ip')}
                   className="h-4 w-4 text-[#03000d] focus:ring-[#03000d] border-gray-300"
                 />
-                <span className="ml-2 text-sm text-gray-700">ИП (Индивидуальный предприниматель)</span>
+                <span className="ml-2 text-sm text-gray-700">
+                  ИП (Индивидуальный предприниматель)
+                </span>
               </label>
             </div>
           </div>
@@ -123,11 +119,7 @@ export default function NewClientPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Торговое наименование
                 </label>
-                <Input
-                  type="text"
-                  name="trade_name"
-                  placeholder="Бренд или торговая марка"
-                />
+                <Input type="text" name="trade_name" placeholder="Бренд или торговая марка" />
               </div>
             </div>
           </div>
@@ -136,9 +128,7 @@ export default function NewClientPage() {
             <h3 className="text-lg font-medium text-gray-900 mb-4">Реквизиты</h3>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  ИНН *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">ИНН *</label>
                 <Input
                   type="text"
                   name="inn"
@@ -154,9 +144,7 @@ export default function NewClientPage() {
 
               {clientType === 'ooo' && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    КПП *
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">КПП *</label>
                   <Input
                     type="text"
                     name="kpp"
@@ -223,21 +211,17 @@ export default function NewClientPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   ФИО руководителя
                 </label>
-                <Input
-                  type="text"
-                  name="ceo_name"
-                  placeholder="Иванов Иван Иванович"
-                />
+                <Input type="text" name="ceo_name" placeholder="Иванов Иван Иванович" />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Должность
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Должность</label>
                 <Input
                   type="text"
                   name="ceo_position"
-                  placeholder={clientType === 'ip' ? 'Индивидуальный предприниматель' : 'Генеральный директор'}
+                  placeholder={
+                    clientType === 'ip' ? 'Индивидуальный предприниматель' : 'Генеральный директор'
+                  }
                 />
               </div>
             </div>
@@ -261,7 +245,13 @@ export default function NewClientPage() {
 
 function ArrowLeftIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
     </svg>
   )

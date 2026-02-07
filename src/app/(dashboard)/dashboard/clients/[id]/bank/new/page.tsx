@@ -7,11 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { createClient } from '@/lib/supabase/client'
 
-export default function NewBankDetailsPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
+export default function NewBankDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -62,9 +58,7 @@ export default function NewBankDetailsPage({
       return
     }
 
-    const { error: insertError } = await supabase
-      .from('client_bank_details')
-      .insert(bankData)
+    const { error: insertError } = await supabase.from('client_bank_details').insert(bankData)
 
     if (insertError) {
       setError(insertError.message)
@@ -86,9 +80,7 @@ export default function NewBankDetailsPage({
           <ArrowLeftIcon className="h-4 w-4" />
           Назад к клиенту
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900 mt-4">
-          Добавить банковские реквизиты
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-900 mt-4">Добавить банковские реквизиты</h1>
       </div>
 
       <div className="bg-white shadow rounded-xl p-6 max-w-2xl">
@@ -104,18 +96,11 @@ export default function NewBankDetailsPage({
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Наименование банка *
               </label>
-              <Input
-                type="text"
-                name="bank_name"
-                required
-                placeholder="АО «Тинькофф Банк»"
-              />
+              <Input type="text" name="bank_name" required placeholder="АО «Тинькофф Банк»" />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                БИК *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">БИК *</label>
               <Input
                 type="text"
                 name="bik"
@@ -190,7 +175,13 @@ export default function NewBankDetailsPage({
 
 function ArrowLeftIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
     </svg>
   )

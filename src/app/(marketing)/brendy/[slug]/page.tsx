@@ -17,13 +17,13 @@ async function getBrand(slug: string) {
 
     if (error || !data) {
       // Fallback to static data
-      return staticBrands.find(b => b.slug === slug) || null
+      return staticBrands.find((b) => b.slug === slug) || null
     }
 
     return data
   } catch (error) {
     // Fallback to static data when Supabase is not available
-    return staticBrands.find(b => b.slug === slug) || null
+    return staticBrands.find((b) => b.slug === slug) || null
   }
 }
 
@@ -46,11 +46,7 @@ async function getBrandProducts(brandId: string) {
   }
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const brand = await getBrand(slug)
 
@@ -62,15 +58,12 @@ export async function generateMetadata({
 
   return {
     title: `${brand.name} — EVRAZIYA GROUP`,
-    description: brand.short_description || `${brand.name} — эксклюзивный бренд в портфолио EVRAZIYA GROUP`,
+    description:
+      brand.short_description || `${brand.name} — эксклюзивный бренд в портфолио EVRAZIYA GROUP`,
   }
 }
 
-export default async function BrandPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export default async function BrandPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const brand = await getBrand(slug)
 
@@ -89,12 +82,7 @@ export default async function BrandPage({
             href="/brendy"
             className="inline-flex items-center text-white/60 hover:text-white text-sm mb-8 transition-colors"
           >
-            <svg
-              className="mr-2 h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -122,9 +110,7 @@ export default async function BrandPage({
                 {brand.name}
               </h1>
               {brand.short_description && (
-                <p className="mt-6 text-lg text-white/60 max-w-xl">
-                  {brand.short_description}
-                </p>
+                <p className="mt-6 text-lg text-white/60 max-w-xl">{brand.short_description}</p>
               )}
             </div>
           </div>
@@ -135,9 +121,7 @@ export default async function BrandPage({
       {brand.full_description && (
         <section className="py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">
-              О бренде
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">О бренде</h2>
             <div className="prose prose-lg max-w-none text-gray-600">
               <p>{brand.full_description}</p>
             </div>
@@ -150,12 +134,7 @@ export default async function BrandPage({
         <section className="py-8">
           <div className="max-w-7xl mx-auto px-4">
             <div className="aspect-[21/9] relative rounded-2xl overflow-hidden">
-              <Image
-                src={brand.hero_image_url}
-                alt={brand.name}
-                fill
-                className="object-cover"
-              />
+              <Image src={brand.hero_image_url} alt={brand.name} fill className="object-cover" />
             </div>
           </div>
         </section>
@@ -165,15 +144,10 @@ export default async function BrandPage({
       {products.length > 0 && (
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">
-              Коллекция
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">Коллекция</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {products.map((product) => (
-                <div
-                  key={product.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-sm"
-                >
+                <div key={product.id} className="bg-white rounded-xl overflow-hidden shadow-sm">
                   <div className="aspect-square bg-gray-100 relative">
                     {product.images?.[0] ? (
                       <Image
@@ -193,9 +167,7 @@ export default async function BrandPage({
                       {product.name}
                     </h3>
                     {product.sku && (
-                      <p className="mt-1 text-xs text-gray-500">
-                        Арт. {product.sku}
-                      </p>
+                      <p className="mt-1 text-xs text-gray-500">Арт. {product.sku}</p>
                     )}
                   </div>
                 </div>
@@ -236,8 +208,18 @@ export default async function BrandPage({
 
 function PackageIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+      />
     </svg>
   )
 }

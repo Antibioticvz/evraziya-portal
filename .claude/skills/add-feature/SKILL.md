@@ -32,7 +32,7 @@ Scaffold a complete feature module following the project's architecture.
    - API routes
    - Components (shared, then feature-specific)
    - Pages
-4. **Verify** — run `npm run build` and `npm run lint`
+4. **Verify** — run `yarn build` and `yarn lint`
 
 ## Architecture rules
 

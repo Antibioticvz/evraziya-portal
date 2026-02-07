@@ -29,21 +29,23 @@ cp .env.local.example .env.local
 # Заполните NEXT_PUBLIC_SUPABASE_URL и NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 # Запуск dev-сервера
-yarn run dev
+yarn dev
 ```
 
 Откройте [http://localhost:3000](http://localhost:3000).
 
 ## Скрипты
 
-| Команда               | Описание                  |
-| --------------------- | ------------------------- |
-| `yarn run dev`        | Запуск dev-сервера        |
-| `yarn run build`      | Продакшн-сборка           |
-| `yarn run start`      | Запуск продакшн-сервера   |
-| `yarn run lint`       | ESLint проверка           |
-| `yarn run lint:fix`   | ESLint с автоисправлением |
-| `yarn run type-check` | Проверка типов TypeScript |
+| Команда           | Описание                  |
+| ----------------- | ------------------------- |
+| `yarn dev`        | Запуск dev-сервера        |
+| `yarn build`      | Продакшн-сборка           |
+| `yarn start`      | Запуск продакшн-сервера   |
+| `yarn lint`         | ESLint проверка           |
+| `yarn lint:fix`     | ESLint с автоисправлением |
+| `yarn type-check`   | Проверка типов TypeScript |
+| `yarn format`       | Prettier форматирование   |
+| `yarn format:check` | Проверка форматирования   |
 
 ## Структура проекта
 
@@ -149,6 +151,27 @@ claude
 | `SUPABASE_SERVICE_ROLE_KEY`     | Сервисный ключ (для admin-операций) |
 | `NEXT_PUBLIC_APP_URL`           | URL приложения                      |
 | `NEXT_PUBLIC_APP_NAME`          | Название приложения                 |
+
+## Git-стратегия
+
+Проект использует **GitHub Flow** с ветками:
+
+| Префикс | Назначение | Базовая ветка |
+|---------|-----------|--------------|
+| `feature/` | Новые фичи | develop |
+| `fix/` | Баг-фиксы | develop |
+| `hotfix/` | Срочные фиксы продакшна | main |
+| `chore/` | Рефакторинг, инфра, конфиг | develop |
+
+Каждая фича разрабатывается в отдельной ветке с PR в целевую ветку.
+
+## Code Style
+
+- **Без точек с запятой** (enforced Prettier + ESLint)
+- **Одинарные кавычки** для строк
+- **Trailing commas** везде
+- **100 символов** ширина строки
+- Конфигурация: `.prettierrc`, `eslint.config.mjs`
 
 ## Деплой
 

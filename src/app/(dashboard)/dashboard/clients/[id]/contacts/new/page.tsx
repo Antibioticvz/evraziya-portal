@@ -7,11 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { createClient } from '@/lib/supabase/client'
 
-export default function NewContactPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
+export default function NewContactPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -39,9 +35,7 @@ export default function NewContactPage({
       is_primary: formData.get('is_primary') === 'on',
     }
 
-    const { error: insertError } = await supabase
-      .from('client_contacts')
-      .insert(contactData)
+    const { error: insertError } = await supabase.from('client_contacts').insert(contactData)
 
     if (insertError) {
       setError(insertError.message)
@@ -63,9 +57,7 @@ export default function NewContactPage({
           <ArrowLeftIcon className="h-4 w-4" />
           Назад к клиенту
         </Link>
-        <h1 className="text-2xl font-bold text-gray-900 mt-4">
-          Добавить контактное лицо
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-900 mt-4">Добавить контактное лицо</h1>
       </div>
 
       <div className="bg-white shadow rounded-xl p-6 max-w-2xl">
@@ -78,56 +70,29 @@ export default function NewContactPage({
 
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                ФИО *
-              </label>
-              <Input
-                type="text"
-                name="full_name"
-                required
-                placeholder="Иванов Иван Иванович"
-              />
+              <label className="block text-sm font-medium text-gray-700 mb-1">ФИО *</label>
+              <Input type="text" name="full_name" required placeholder="Иванов Иван Иванович" />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Должность
-              </label>
-              <Input
-                type="text"
-                name="position"
-                placeholder="Менеджер по закупкам"
-              />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Должность</label>
+              <Input type="text" name="position" placeholder="Менеджер по закупкам" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Телефон
-                </label>
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="+7 (999) 123-45-67"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+                <Input type="tel" name="phone" placeholder="+7 (999) 123-45-67" />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="email@example.com"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <Input type="email" name="email" placeholder="email@example.com" />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Тип контакта
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Тип контакта</label>
               <select
                 name="contact_type"
                 className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[#03000d] focus:outline-none focus:ring-1 focus:ring-[#03000d]"
@@ -171,7 +136,13 @@ export default function NewContactPage({
 
 function ArrowLeftIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
     </svg>
   )

@@ -64,15 +64,9 @@ function LoginForm() {
         />
       </div>
 
-      {error && (
-        <div className="text-red-400 text-sm text-center">{error}</div>
-      )}
+      {error && <div className="text-red-400 text-sm text-center">{error}</div>}
 
-      <Button
-        type="submit"
-        className="w-full"
-        disabled={loading}
-      >
+      <Button type="submit" className="w-full" disabled={loading}>
         {loading ? 'Вход...' : 'Войти'}
       </Button>
     </form>
@@ -114,10 +108,7 @@ export default function LoginPage() {
 
         {/* Back link */}
         <div className="text-center mt-8">
-          <Link
-            href="/"
-            className="text-white/60 hover:text-white text-sm transition-colors"
-          >
+          <Link href="/" className="text-white/60 hover:text-white text-sm transition-colors">
             ← Вернуться на главную
           </Link>
         </div>

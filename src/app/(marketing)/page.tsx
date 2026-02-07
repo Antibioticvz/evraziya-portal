@@ -61,9 +61,7 @@ export default function HomePage() {
           </div>
 
           {/* Right side - Product image (optional, can be added later) */}
-          <div className="hidden lg:block">
-            {/* Product showcase can go here */}
-          </div>
+          <div className="hidden lg:block">{/* Product showcase can go here */}</div>
         </div>
       </div>
 
@@ -80,10 +78,7 @@ export default function HomePage() {
               WhatsApp: +7 499 126 75 60
             </a>
             <span className="hidden sm:inline">|</span>
-            <a
-              href="mailto:brand@evraziyagroup.com"
-              className="hover:text-white transition-colors"
-            >
+            <a href="mailto:brand@evraziyagroup.com" className="hover:text-white transition-colors">
               brand@evraziyagroup.com
             </a>
           </div>

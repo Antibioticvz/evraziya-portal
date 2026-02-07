@@ -42,8 +42,8 @@ export default async function BrandsPage() {
             НАШИ БРЕНДЫ
           </h1>
           <p className="mt-6 text-lg text-white/60 max-w-2xl mx-auto">
-            Мы являемся эксклюзивным дистрибьютором премиальных европейских брендов
-            кожаных изделий на территории России
+            Мы являемся эксклюзивным дистрибьютором премиальных европейских брендов кожаных изделий
+            на территории России
           </p>
         </div>
       </section>
@@ -68,9 +68,7 @@ export default async function BrandsPage() {
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-light text-gray-400">
-                        {brand.name}
-                      </span>
+                      <span className="text-2xl font-light text-gray-400">{brand.name}</span>
                     </div>
                   )}
                 </div>
@@ -109,9 +107,7 @@ export default async function BrandsPage() {
       {/* CTA section */}
       <section className="bg-gray-50 py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900">
-            Хотите стать партнером?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900">Хотите стать партнером?</h2>
           <p className="mt-4 text-lg text-gray-600">
             Мы открыты для сотрудничества с розничными магазинами и оптовыми покупателями
           </p>

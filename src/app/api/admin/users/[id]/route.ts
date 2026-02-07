@@ -4,7 +4,9 @@ import { createAdminClient } from '@/lib/supabase/admin'
 
 async function isCurrentUserAdmin() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) return { isAdmin: false, user: null }
 
@@ -21,10 +23,7 @@ async function isCurrentUserAdmin() {
   return { isAdmin, user }
 }
 
-export async function PATCH(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const adminClient = createAdminClient()
 
@@ -51,10 +50,7 @@ export async function PATCH(
   if (is_active !== undefined) updates.is_active = is_active
 
   // Update profile
-  const { error: updateError } = await adminClient
-    .from('profiles')
-    .update(updates)
-    .eq('id', id)
+  const { error: updateError } = await adminClient.from('profiles').update(updates).eq('id', id)
 
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 })
@@ -64,7 +60,7 @@ export async function PATCH(
   if (is_active !== undefined) {
     const { error: banError } = await adminClient.auth.admin.updateUserById(
       id,
-      { ban_duration: is_active ? 'none' : '876000h' } // ~100 years if blocked
+      { ban_duration: is_active ? 'none' : '876000h' }, // ~100 years if blocked
     )
 
     if (banError) {
@@ -83,10 +79,7 @@ export async function PATCH(
   return NextResponse.json({ user: updatedProfile })
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const adminClient = createAdminClient()
 
@@ -99,10 +92,7 @@ export async function DELETE(
 
   // Prevent self-deletion
   if (user.id === id) {
-    return NextResponse.json(
-      { error: 'Невозможно удалить собственный аккаунт' },
-      { status: 400 }
-    )
+    return NextResponse.json({ error: 'Невозможно удалить собственный аккаунт' }, { status: 400 })
   }
 
   if (!isAdmin) {
