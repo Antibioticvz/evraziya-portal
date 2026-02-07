@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { FadeIn } from '@/components/shared/fade-in'
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false)
@@ -61,7 +62,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
             {/* Contact info */}
-            <div>
+            <FadeIn direction="left">
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">Наши контакты</h2>
 
               <div className="space-y-8">
@@ -136,10 +137,10 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-            </div>
+            </FadeIn>
 
             {/* Contact form */}
-            <div>
+            <FadeIn direction="right" delay={0.2}>
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">Написать нам</h2>
 
               {success ? (
@@ -210,7 +211,7 @@ export default function ContactPage() {
                   </Button>
                 </form>
               )}
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>

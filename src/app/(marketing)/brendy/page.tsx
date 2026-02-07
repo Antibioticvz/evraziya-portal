@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase/static'
 import { staticBrands } from '@/lib/brands-data'
 import { BrandCard } from '@/components/shared/brand-card'
+import { FadeIn } from '@/components/shared/fade-in'
 import type { Brand } from '@/types/database'
 
 async function getBrands(): Promise<Brand[]> {
@@ -53,31 +54,35 @@ export default async function BrandsPage() {
       {/* Brands grid */}
       <section className="py-16 md:py-24 bg-evraziya-dark">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {brands.map((brand) => (
-              <BrandCard key={brand.id} brand={brand} />
-            ))}
-          </div>
+          <FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {brands.map((brand) => (
+                <BrandCard key={brand.id} brand={brand} />
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* CTA section */}
       <section className="bg-evraziya-light-purple py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-evraziya-dark">
-            Хотите стать партнером?
-          </h2>
-          <p className="mt-4 text-lg text-evraziya-gray">
-            Мы открыты для сотрудничества с розничными магазинами и оптовыми покупателями
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/kontakty"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-evraziya-purple rounded-lg hover:bg-evraziya-purple-hover transition-colors"
-            >
-              Связаться с нами
-            </Link>
-          </div>
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-light text-evraziya-dark">
+              Хотите стать партнером?
+            </h2>
+            <p className="mt-4 text-lg text-evraziya-gray">
+              Мы открыты для сотрудничества с розничными магазинами и оптовыми покупателями
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/kontakty"
+                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-evraziya-purple rounded-lg hover:bg-evraziya-purple-hover transition-colors"
+              >
+                Связаться с нами
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
     </main>

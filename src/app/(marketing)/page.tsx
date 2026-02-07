@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { staticBrands } from '@/lib/brands-data'
 import { BrandCard } from '@/components/shared/brand-card'
+import { FadeIn } from '@/components/shared/fade-in'
 
 export default function HomePage() {
   const featuredBrands = staticBrands.slice(0, 6)
@@ -83,49 +84,57 @@ export default function HomePage() {
       {/* Featured brands */}
       <section className="py-16 md:py-24 bg-evraziya-dark">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-light text-white tracking-wide text-center mb-4">
-            НАШИ БРЕНДЫ
-          </h2>
-          <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
-            Эксклюзивная дистрибуция премиальных европейских брендов кожаных изделий на территории
-            России
-          </p>
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-light text-white tracking-wide text-center mb-4">
+              НАШИ БРЕНДЫ
+            </h2>
+            <p className="text-white/60 text-center mb-12 max-w-2xl mx-auto">
+              Эксклюзивная дистрибуция премиальных европейских брендов кожаных изделий на территории
+              России
+            </p>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredBrands.map((brand) => (
-              <BrandCard key={brand.id} brand={brand} />
-            ))}
-          </div>
+          <FadeIn delay={0.2}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featuredBrands.map((brand) => (
+                <BrandCard key={brand.id} brand={brand} />
+              ))}
+            </div>
+          </FadeIn>
 
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-white/30 text-white hover:bg-white/10 uppercase tracking-wider"
-            >
-              <Link href="/brendy">Все бренды</Link>
-            </Button>
-          </div>
+          <FadeIn delay={0.4}>
+            <div className="text-center mt-12">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10 uppercase tracking-wider"
+              >
+                <Link href="/brendy">Все бренды</Link>
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* About section */}
       <section className="py-16 md:py-24 bg-evraziya-light-purple">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-evraziya-dark tracking-wide mb-8">
-            О КОМПАНИИ
-          </h2>
-          <p className="text-lg text-evraziya-gray leading-relaxed">
-            Группа компаний EVRAZIYA — эксклюзивный дистрибьютор европейских брендов кожаных сумок и
-            аксессуаров на территории России. Мы работаем напрямую с производителями из Италии,
-            Нидерландов и Индии, обеспечивая нашим партнерам лучшие условия сотрудничества.
-          </p>
-          <div className="mt-8">
-            <Button asChild size="lg" className="uppercase tracking-wider">
-              <Link href="/kontakty">Стать партнером</Link>
-            </Button>
-          </div>
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-light text-evraziya-dark tracking-wide mb-8">
+              О КОМПАНИИ
+            </h2>
+            <p className="text-lg text-evraziya-gray leading-relaxed">
+              Группа компаний EVRAZIYA — эксклюзивный дистрибьютор европейских брендов кожаных сумок
+              и аксессуаров на территории России. Мы работаем напрямую с производителями из Италии,
+              Нидерландов и Индии, обеспечивая нашим партнерам лучшие условия сотрудничества.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="uppercase tracking-wider">
+                <Link href="/kontakty">Стать партнером</Link>
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </section>
     </>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createStaticClient } from '@/lib/supabase/static'
 import { staticBrands } from '@/lib/brands-data'
+import { FadeIn } from '@/components/shared/fade-in'
 import dynamic from 'next/dynamic'
 
 const ImageSlider = dynamic(() =>
@@ -132,10 +133,12 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {brand.full_description && (
         <section className="py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">О бренде</h2>
-            <div className="prose prose-lg max-w-none text-gray-600">
-              <p>{brand.full_description}</p>
-            </div>
+            <FadeIn>
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">О бренде</h2>
+              <div className="prose prose-lg max-w-none text-gray-600">
+                <p>{brand.full_description}</p>
+              </div>
+            </FadeIn>
           </div>
         </section>
       )}
@@ -144,8 +147,10 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {brand.preview_images && brand.preview_images.length > 0 && (
         <section className="py-16 md:py-24 bg-evraziya-light-purple">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-light text-evraziya-dark mb-8">Галерея</h2>
-            <ImageGallery images={brand.preview_images} alt={brand.name} columns={3} />
+            <FadeIn>
+              <h2 className="text-2xl md:text-3xl font-light text-evraziya-dark mb-8">Галерея</h2>
+              <ImageGallery images={brand.preview_images} alt={brand.name} columns={3} />
+            </FadeIn>
           </div>
         </section>
       )}
@@ -154,35 +159,39 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {products.length > 0 && (
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">Коллекция</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {products.map((product) => (
-                <div key={product.id} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                  <div className="aspect-square bg-gray-100 relative">
-                    {product.images?.[0] ? (
-                      <Image
-                        src={product.images[0]}
-                        alt={product.name}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                        <PackageIcon className="h-12 w-12" />
-                      </div>
-                    )}
+            <FadeIn>
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-8">Коллекция</h2>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {products.map((product) => (
+                  <div key={product.id} className="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div className="aspect-square bg-gray-100 relative">
+                      {product.images?.[0] ? (
+                        <Image
+                          src={product.images[0]}
+                          alt={product.name}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+                          <PackageIcon className="h-12 w-12" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-sm font-medium text-gray-900 line-clamp-2">
+                        {product.name}
+                      </h3>
+                      {product.sku && (
+                        <p className="mt-1 text-xs text-gray-500">Арт. {product.sku}</p>
+                      )}
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-sm font-medium text-gray-900 line-clamp-2">
-                      {product.name}
-                    </h3>
-                    {product.sku && (
-                      <p className="mt-1 text-xs text-gray-500">Арт. {product.sku}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </FadeIn>
           </div>
         </section>
       )}
@@ -190,26 +199,28 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
       {/* Contact CTA */}
       <section className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900">
-            Заинтересованы в {brand.name}?
-          </h2>
-          <p className="mt-4 text-lg text-gray-600">
-            Свяжитесь с нами для получения информации о ценах и условиях сотрудничества
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/kontakty"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-evraziya-purple rounded-lg hover:bg-evraziya-purple-hover transition-colors"
-            >
-              Связаться с нами
-            </Link>
-            <Link
-              href="/brendy"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-            >
-              Другие бренды
-            </Link>
-          </div>
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-light text-gray-900">
+              Заинтересованы в {brand.name}?
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Свяжитесь с нами для получения информации о ценах и условиях сотрудничества
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/kontakty"
+                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-evraziya-purple rounded-lg hover:bg-evraziya-purple-hover transition-colors"
+              >
+                Связаться с нами
+              </Link>
+              <Link
+                href="/brendy"
+                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Другие бренды
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
     </main>
