@@ -4,46 +4,46 @@ B2B-портал для группы компаний ЕВРАЗИЯ — опт�
 
 ## Стек технологий
 
-| Категория | Технология |
-|-----------|-----------|
-| Framework | Next.js 16 (App Router) + React 19 |
-| Язык | TypeScript 5 (strict mode) |
-| База данных / Auth | Supabase (PostgreSQL, Auth, Realtime) |
-| Стили | Tailwind CSS 4 + shadcn/ui + Radix UI |
-| Серверное состояние | TanStack React Query |
-| Клиентское состояние | Zustand |
-| URL-состояние | nuqs |
-| Формы | React Hook Form + Zod |
-| Иконки | Lucide React |
-| Анимации | Framer Motion |
-| Пакетный менеджер | npm |
+| Категория            | Технология                            |
+| -------------------- | ------------------------------------- |
+| Framework            | Next.js 16 (App Router) + React 19    |
+| Язык                 | TypeScript 5 (strict mode)            |
+| База данных / Auth   | Supabase (PostgreSQL, Auth, Realtime) |
+| Стили                | Tailwind CSS 4 + shadcn/ui + Radix UI |
+| Серверное состояние  | TanStack React Query                  |
+| Клиентское состояние | Zustand                               |
+| URL-состояние        | nuqs                                  |
+| Формы                | React Hook Form + Zod                 |
+| Иконки               | Lucide React                          |
+| Анимации             | Framer Motion                         |
+| Пакетный менеджер    | yarn                                  |
 
 ## Быстрый старт
 
 ```bash
 # Установка зависимостей
-npm install
+yarn install
 
 # Копирование переменных окружения
 cp .env.local.example .env.local
 # Заполните NEXT_PUBLIC_SUPABASE_URL и NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 # Запуск dev-сервера
-npm run dev
+yarn run dev
 ```
 
 Откройте [http://localhost:3000](http://localhost:3000).
 
 ## Скрипты
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | Запуск dev-сервера |
-| `npm run build` | Продакшн-сборка |
-| `npm run start` | Запуск продакшн-сервера |
-| `npm run lint` | ESLint проверка |
-| `npm run lint:fix` | ESLint с автоисправлением |
-| `npm run type-check` | Проверка типов TypeScript |
+| Команда               | Описание                  |
+| --------------------- | ------------------------- |
+| `yarn run dev`        | Запуск dev-сервера        |
+| `yarn run build`      | Продакшн-сборка           |
+| `yarn run start`      | Запуск продакшн-сервера   |
+| `yarn run lint`       | ESLint проверка           |
+| `yarn run lint:fix`   | ESLint с автоисправлением |
+| `yarn run type-check` | Проверка типов TypeScript |
 
 ## Структура проекта
 
@@ -86,15 +86,15 @@ supabase/
 
 ### Доступные скиллы (slash-команды)
 
-| Команда | Описание |
-|---------|----------|
-| `/wave-start` | Выполнить следующую волну задач |
-| `/wave-verify` | Проверить завершённость волны (build + lint + review) |
-| `/add-page` | Создать новую страницу Next.js App Router |
-| `/add-api-route` | Создать новый API-маршрут с Supabase |
-| `/add-shadcn` | Добавить/настроить shadcn/ui компонент |
-| `/supabase-migrate` | Создать новую миграцию Supabase + обновить типы |
-| `/add-feature` | Создать полную фичу (страница + API + компоненты + типы) |
+| Команда             | Описание                                                 |
+| ------------------- | -------------------------------------------------------- |
+| `/wave-start`       | Выполнить следующую волну задач                          |
+| `/wave-verify`      | Проверить завершённость волны (build + lint + review)    |
+| `/add-page`         | Создать новую страницу Next.js App Router                |
+| `/add-api-route`    | Создать новый API-маршрут с Supabase                     |
+| `/add-shadcn`       | Добавить/настроить shadcn/ui компонент                   |
+| `/supabase-migrate` | Создать новую миграцию Supabase + обновить типы          |
+| `/add-feature`      | Создать полную фичу (страница + API + компоненты + типы) |
 
 ### Как начать работу над фичей
 
@@ -142,13 +142,13 @@ claude
 
 Скопируйте `.env.local.example` в `.env.local` и заполните:
 
-| Переменная | Описание |
-|-----------|----------|
-| `NEXT_PUBLIC_SUPABASE_URL` | URL проекта Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Публичный ключ Supabase |
-| `SUPABASE_SERVICE_ROLE_KEY` | Сервисный ключ (для admin-операций) |
-| `NEXT_PUBLIC_APP_URL` | URL приложения |
-| `NEXT_PUBLIC_APP_NAME` | Название приложения |
+| Переменная                      | Описание                            |
+| ------------------------------- | ----------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`      | URL проекта Supabase                |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Публичный ключ Supabase             |
+| `SUPABASE_SERVICE_ROLE_KEY`     | Сервисный ключ (для admin-операций) |
+| `NEXT_PUBLIC_APP_URL`           | URL приложения                      |
+| `NEXT_PUBLIC_APP_NAME`          | Название приложения                 |
 
 ## Деплой
 
