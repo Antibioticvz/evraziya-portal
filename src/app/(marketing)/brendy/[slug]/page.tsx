@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase/server'
+import { createStaticClient } from '@/lib/supabase/static'
 import { staticBrands } from '@/lib/brands-data'
+import type { Brand, Product } from '@/types/database'
 
-async function getBrand(slug: string) {
+async function getBrand(slug: string): Promise<Brand | null> {
   try {
-    const supabase = await createClient()
+    const supabase = createStaticClient()
 
     const { data, error } = await supabase
       .from('brands')
@@ -27,9 +28,9 @@ async function getBrand(slug: string) {
   }
 }
 
-async function getBrandProducts(brandId: string) {
+async function getBrandProducts(brandId: string): Promise<Product[]> {
   try {
-    const supabase = await createClient()
+    const supabase = createStaticClient()
 
     const { data } = await supabase
       .from('products')
