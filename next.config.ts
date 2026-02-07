@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: 'cdn-st2.vigbo.tech',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
   },
 }

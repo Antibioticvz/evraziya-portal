@@ -67,6 +67,7 @@ export async function POST(request: Request) {
     full_description,
     logo_url,
     hero_image_url,
+    preview_images,
     sort_order,
     is_active,
   } = body
@@ -91,6 +92,7 @@ export async function POST(request: Request) {
       full_description: full_description || null,
       logo_url: logo_url || null,
       hero_image_url: hero_image_url || null,
+      preview_images: preview_images || [],
       sort_order: sort_order ?? 0,
       is_active: is_active ?? true,
     })

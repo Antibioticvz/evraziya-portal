@@ -43,6 +43,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     full_description,
     logo_url,
     hero_image_url,
+    preview_images,
     sort_order,
     is_active,
   } = body
@@ -54,6 +55,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   if (full_description !== undefined) updates.full_description = full_description
   if (logo_url !== undefined) updates.logo_url = logo_url
   if (hero_image_url !== undefined) updates.hero_image_url = hero_image_url
+  if (preview_images !== undefined) updates.preview_images = preview_images
   if (sort_order !== undefined) updates.sort_order = sort_order
   if (is_active !== undefined) updates.is_active = is_active
   updates.updated_at = new Date().toISOString()
