@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createStaticClient } from '@/lib/supabase/static'
 import { staticBrands } from '@/lib/brands-data'
+import { ImageSlider } from '@/components/shared/image-slider'
+import { ImageGallery } from '@/components/shared/image-gallery'
 import type { Brand, Product } from '@/types/database'
 
 async function getBrand(slug: string): Promise<Brand | null> {
@@ -17,13 +19,11 @@ async function getBrand(slug: string): Promise<Brand | null> {
       .single()
 
     if (error || !data) {
-      // Fallback to static data
       return staticBrands.find((b) => b.slug === slug) || null
     }
 
     return data
   } catch {
-    // Fallback to static data when Supabase is not available
     return staticBrands.find((b) => b.slug === slug) || null
   }
 }
@@ -42,7 +42,6 @@ async function getBrandProducts(brandId: string): Promise<Product[]> {
 
     return data || []
   } catch {
-    // Return empty array when Supabase is not available
     return []
   }
 }
@@ -52,9 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const brand = await getBrand(slug)
 
   if (!brand) {
-    return {
-      title: 'Бренд не найден — EVRAZIYA GROUP',
-    }
+    return { title: 'Бренд не найден — EVRAZIYA GROUP' }
   }
 
   return {
@@ -77,7 +74,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   return (
     <main>
       {/* Hero section */}
-      <section className="bg-[#03000d] py-16 md:py-24">
+      <section className="bg-evraziya-dark py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4">
           <Link
             href="/brendy"
@@ -118,6 +115,13 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
+      {/* Image slider */}
+      {brand.preview_images && brand.preview_images.length > 0 && (
+        <section className="py-12 bg-evraziya-dark-alt">
+          <ImageSlider images={brand.preview_images} alt={brand.name} />
+        </section>
+      )}
+
       {/* About brand */}
       {brand.full_description && (
         <section className="py-16 md:py-24">
@@ -130,13 +134,12 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </section>
       )}
 
-      {/* Brand images gallery */}
-      {brand.hero_image_url && (
-        <section className="py-8">
+      {/* Gallery */}
+      {brand.preview_images && brand.preview_images.length > 0 && (
+        <section className="py-16 md:py-24 bg-evraziya-light-purple">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="aspect-[21/9] relative rounded-2xl overflow-hidden">
-              <Image src={brand.hero_image_url} alt={brand.name} fill className="object-cover" />
-            </div>
+            <h2 className="text-2xl md:text-3xl font-light text-evraziya-dark mb-8">Галерея</h2>
+            <ImageGallery images={brand.preview_images} alt={brand.name} columns={3} />
           </div>
         </section>
       )}
@@ -190,7 +193,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/kontakty"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-[#03000d] rounded-lg hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-evraziya-purple rounded-lg hover:bg-evraziya-purple-hover transition-colors"
             >
               Связаться с нами
             </Link>

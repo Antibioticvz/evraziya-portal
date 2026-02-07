@@ -45,7 +45,7 @@ export default function ContactPage() {
   return (
     <main>
       {/* Hero section */}
-      <section className="bg-[#03000d] py-20 md:py-28">
+      <section className="bg-evraziya-dark py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-wide">
             КОНТАКТЫ
@@ -66,41 +66,42 @@ export default function ContactPage() {
 
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+                  <h3 className="text-sm font-medium text-evraziya-gray uppercase tracking-wider mb-2">
                     Телефон
                   </h3>
                   <a
-                    href="tel:+74951234567"
-                    className="text-xl text-gray-900 hover:text-[#03000d] transition-colors"
+                    href="tel:+74991267560"
+                    className="text-xl text-gray-900 hover:text-evraziya-purple transition-colors"
                   >
-                    +7 (495) 123-45-67
+                    +7 (499) 126-75-60
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+                  <h3 className="text-sm font-medium text-evraziya-gray uppercase tracking-wider mb-2">
                     Email
                   </h3>
                   <a
-                    href="mailto:info@evraziyagroup.com"
-                    className="text-xl text-gray-900 hover:text-[#03000d] transition-colors"
+                    href="mailto:brand@evraziyagroup.com"
+                    className="text-xl text-gray-900 hover:text-evraziya-purple transition-colors"
                   >
-                    info@evraziyagroup.com
+                    brand@evraziyagroup.com
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+                  <h3 className="text-sm font-medium text-evraziya-gray uppercase tracking-wider mb-2">
                     Адрес
                   </h3>
                   <p className="text-lg text-gray-900">
-                    г. Москва, ул. Примерная, д. 1<br />
-                    БЦ &ldquo;Пример&rdquo;, офис 123
+                    г. Москва
+                    <br />
+                    Оптовый склад EVRAZIYA Group
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+                  <h3 className="text-sm font-medium text-evraziya-gray uppercase tracking-wider mb-2">
                     Режим работы
                   </h3>
                   <p className="text-lg text-gray-900">
@@ -113,7 +114,7 @@ export default function ContactPage() {
 
               {/* Social links */}
               <div className="mt-12">
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
+                <h3 className="text-sm font-medium text-evraziya-gray uppercase tracking-wider mb-4">
                   Мы в соцсетях
                 </h3>
                 <div className="flex gap-4">
@@ -121,15 +122,15 @@ export default function ContactPage() {
                     href="https://t.me/evraziyagroup"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#03000d] hover:text-white transition-colors"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-evraziya-purple hover:text-white transition-colors"
                   >
                     <TelegramIcon className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://wa.me/74951234567"
+                    href="https://wa.me/74991267560"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#03000d] hover:text-white transition-colors"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-evraziya-purple hover:text-white transition-colors"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                   </a>
@@ -150,7 +151,7 @@ export default function ContactPage() {
                   <p className="text-gray-600">Мы свяжемся с вами в ближайшее время</p>
                   <button
                     onClick={() => setSuccess(false)}
-                    className="mt-4 text-sm text-[#03000d] hover:underline"
+                    className="mt-4 text-sm text-evraziya-purple hover:underline"
                   >
                     Отправить еще одно сообщение
                   </button>
@@ -200,7 +201,7 @@ export default function ContactPage() {
                       required
                       rows={5}
                       placeholder="Расскажите о вашем запросе..."
-                      className="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-[#03000d] focus:outline-none focus:ring-1 focus:ring-[#03000d] resize-none"
+                      className="block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-evraziya-purple focus:outline-none focus:ring-1 focus:ring-evraziya-purple resize-none"
                     />
                   </div>
 
@@ -211,13 +212,6 @@ export default function ContactPage() {
               )}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Map section (placeholder) */}
-      <section className="h-96 bg-gray-200 relative">
-        <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-          <MapIcon className="h-16 w-16" />
         </div>
       </section>
     </main>
@@ -250,24 +244,6 @@ function CheckIcon({ className }: { className?: string }) {
       stroke="currentColor"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-    </svg>
-  )
-}
-
-function MapIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"
-      />
     </svg>
   )
 }
