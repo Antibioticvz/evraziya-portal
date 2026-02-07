@@ -71,8 +71,8 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
       setUsers([data.user, ...users])
       setShowCreateModal(false)
       router.refresh()
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Произошла ошибка')
     } finally {
       setLoading(false)
     }
@@ -106,8 +106,8 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
       setShowEditModal(false)
       setSelectedUser(null)
       router.refresh()
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Произошла ошибка')
     } finally {
       setLoading(false)
     }
@@ -133,8 +133,8 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
       setShowDeleteModal(false)
       setSelectedUser(null)
       router.refresh()
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Произошла ошибка')
     } finally {
       setLoading(false)
     }
@@ -158,8 +158,8 @@ export function UserManagement({ initialUsers, roles, currentUserId }: UserManag
 
       setUsers(users.map((u) => (u.id === user.id ? data.user : u)))
       router.refresh()
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Произошла ошибка')
     }
   }
 

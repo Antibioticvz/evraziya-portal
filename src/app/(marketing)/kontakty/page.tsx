@@ -35,8 +35,8 @@ export default function ContactPage() {
 
       setSuccess(true)
       e.currentTarget.reset()
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Произошла ошибка')
     } finally {
       setLoading(false)
     }
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   </h3>
                   <p className="text-lg text-gray-900">
                     г. Москва, ул. Примерная, д. 1<br />
-                    БЦ "Пример", офис 123
+                    БЦ &ldquo;Пример&rdquo;, офис 123
                   </p>
                 </div>
 

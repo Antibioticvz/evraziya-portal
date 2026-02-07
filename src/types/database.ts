@@ -103,11 +103,24 @@ export interface Brand {
   short_description: string | null
   full_description: string | null
   logo_url: string | null
+  hero_image_url: string | null
   is_active: boolean
   sort_order: number
-  created_at: string
-  updated_at: string
+  created_at?: string
+  updated_at?: string
   images?: BrandImage[]
+}
+
+export interface Product {
+  id: string
+  brand_id: string
+  name: string
+  sku: string | null
+  images: string[] | null
+  is_active: boolean
+  sort_order: number
+  created_at?: string
+  updated_at?: string
 }
 
 export interface BrandImage {

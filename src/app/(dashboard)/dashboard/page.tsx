@@ -1,4 +1,22 @@
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+
+interface RecentOrder {
+  id: string
+  order_number: string
+  status: string
+  total_amount: number | null
+  created_at: string
+  client: { company_name: string }[] | null
+}
+
+interface RecentClient {
+  id: string
+  company_name: string
+  client_type: string
+  status: string
+  created_at: string
+}
 
 async function getStats() {
   const supabase = await createClient()
@@ -108,13 +126,13 @@ export default async function DashboardPage() {
                 Заказы пока отсутствуют
               </div>
             ) : (
-              recentOrders.map((order: any) => (
+              recentOrders.map((order: RecentOrder) => (
                 <div key={order.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50">
                   <div className="flex items-center justify-between">
                     <div className="truncate">
                       <p className="text-sm font-medium text-gray-900">{order.order_number}</p>
                       <p className="text-sm text-gray-500">
-                        {order.client?.company_name || 'Неизвестный клиент'}
+                        {order.client?.[0]?.company_name || 'Неизвестный клиент'}
                       </p>
                     </div>
                     <div className="flex flex-col items-end">
@@ -130,12 +148,12 @@ export default async function DashboardPage() {
           </div>
           {recentOrders.length > 0 && (
             <div className="px-4 py-3 bg-gray-50 rounded-b-xl">
-              <a
+              <Link
                 href="/dashboard/orders"
                 className="text-sm font-medium text-[#03000d] hover:text-gray-700"
               >
                 Показать все заказы →
-              </a>
+              </Link>
             </div>
           )}
         </div>
@@ -151,7 +169,7 @@ export default async function DashboardPage() {
                 Клиенты пока отсутствуют
               </div>
             ) : (
-              recentClients.map((client: any) => (
+              recentClients.map((client: RecentClient) => (
                 <div key={client.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50">
                   <div className="flex items-center justify-between">
                     <div className="truncate">
@@ -168,12 +186,12 @@ export default async function DashboardPage() {
           </div>
           {recentClients.length > 0 && (
             <div className="px-4 py-3 bg-gray-50 rounded-b-xl">
-              <a
+              <Link
                 href="/dashboard/clients"
                 className="text-sm font-medium text-[#03000d] hover:text-gray-700"
               >
                 Показать всех клиентов →
-              </a>
+              </Link>
             </div>
           )}
         </div>
