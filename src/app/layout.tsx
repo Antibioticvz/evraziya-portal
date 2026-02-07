@@ -1,7 +1,14 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { QueryProvider } from '@/components/providers/query-provider'
 import { ToastProvider } from '@/components/ui/toast'
+
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -37,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="ru" className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-background antialiased">
         <QueryProvider>
           <ToastProvider>{children}</ToastProvider>

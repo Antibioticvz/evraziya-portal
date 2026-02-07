@@ -11,21 +11,21 @@ import { Button } from '@/components/ui/button'
 const navLinks = [
   { href: '/', label: 'ГЛАВНАЯ' },
   { href: '/brendy', label: 'БРЕНДЫ' },
-  { href: '/brand/gianfranco-lotti', label: 'GIANFRANCO LOTTI' },
-  { href: '/brand/campomaggi', label: 'CAMPOMAGGI' },
-  { href: '/brand/caterina-lucchi', label: 'CATERINA LUCCHI' },
-  { href: '/brand/101meme', label: '101MEME' },
-  { href: '/brand/maizena', label: 'MAIZENA' },
-  { href: '/brand/chiarugi', label: 'CHIARUGI' },
+  { href: '/brendy/campomaggi', label: 'CAMPOMAGGI' },
+  { href: '/brendy/caterina-lucchi', label: 'CATERINA LUCCHI' },
+  { href: '/brendy/cristian-marcucci', label: 'CRISTIAN MARCUCCI' },
+  { href: '/brendy/101meme', label: '101 MEME' },
+  { href: '/brendy/maizena', label: 'MAIZENA' },
+  { href: '/brendy/chiarugi', label: 'CHIARUGI' },
 ]
 
 const navLinksRight = [
-  { href: '/brand/gabs', label: 'GABS' },
-  { href: '/brand/dr-amsterdam', label: 'dR. AMSTERDAM' },
-  { href: '/brand/vilenca-holland', label: 'VILENCA HOLLAND' },
-  { href: '/brand/bear-design', label: 'BEAR Design' },
-  { href: '/brand/hexagona', label: 'HEXAGONA' },
-  { href: '/brand/roberto-mantellassi', label: 'ROBERTO MANTELLASSI' },
+  { href: '/brendy/gabs', label: 'GABS' },
+  { href: '/brendy/charlotte-marchetti', label: 'CHARLOTTE-MARCHETTI' },
+  { href: '/brendy/la-via-firenze', label: 'LA VIA FIRENZE' },
+  { href: '/brendy/vilenca-holland', label: 'VILENCA HOLLAND' },
+  { href: '/brendy/bear-design', label: 'BEAR DESIGN' },
+  { href: '/brendy/roberto-mantellassi', label: 'ROBERTO MANTELLASSI' },
   { href: '/kontakty', label: 'КОНТАКТЫ' },
 ]
 

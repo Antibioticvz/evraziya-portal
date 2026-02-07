@@ -22,9 +22,19 @@
   --color-ring: hsl(271 94% 42%);
   --radius: 0.5rem;
 
-  /* EVRAZIYA Custom Theme Colors */
-  --color-evraziya-purple: hsl(271 94% 42%);
-  --color-evraziya-dark: hsl(260 62% 3%);
+  /* EVRAZIYA Design System */
+  --color-evraziya-purple: #7608cf;
+  --color-evraziya-purple-hover: #73178a;
+  --color-evraziya-dark: #03000d;
+  --color-evraziya-dark-alt: #05010f;
+  --color-evraziya-light-purple: #f5f2f7;
+  --color-evraziya-border-purple: #6408d4;
+  --color-evraziya-accent: rgba(172, 139, 232, 0.95);
+  --color-evraziya-gray: #626262;
+
+  /* Font families */
+  --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-cyntho: var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -78,7 +88,12 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Cyntho Pro placeholder — replace --font-inter with local Cyntho Pro when available */
+.font-cyntho {
+  font-family: var(--font-cyntho);
 }
 
 /* Scrollbar styling */

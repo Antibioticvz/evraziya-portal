@@ -104,6 +104,7 @@ export interface Brand {
   full_description: string | null
   logo_url: string | null
   hero_image_url: string | null
+  preview_images?: string[]
   is_active: boolean
   sort_order: number
   created_at?: string
