@@ -72,9 +72,15 @@ export default function ContactPage() {
                   </h3>
                   <a
                     href="tel:+74991267560"
-                    className="text-xl text-gray-900 hover:text-evraziya-purple transition-colors"
+                    className="text-xl text-gray-900 hover:text-evraziya-purple transition-colors block"
                   >
                     +7 (499) 126-75-60
+                  </a>
+                  <a
+                    href="tel:+79333990372"
+                    className="text-xl text-gray-900 hover:text-evraziya-purple transition-colors block mt-1"
+                  >
+                    +7 (933) 399-03-72
                   </a>
                 </div>
 
@@ -95,9 +101,9 @@ export default function ContactPage() {
                     Адрес
                   </h3>
                   <p className="text-lg text-gray-900">
-                    г. Москва
+                    г. Москва, ул. Шверника 13/2
                     <br />
-                    Оптовый склад EVRAZIYA Group
+                    117449
                   </p>
                 </div>
 

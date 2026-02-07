@@ -34,7 +34,7 @@ describe('brands data', () => {
 
   it('all CDN URLs have valid format', () => {
     const cdnPattern =
-      /^https:\/\/cdn-st2\.vigbo\.com\/u\d+\/\d+\/blog\/\d+\/\d+\/\d+\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/
+      /^https:\/\/cdn-st2\.vigbo\.com\/u\d+\/\d+\/blog\/\d+\/\d+\/\d+\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/i
 
     for (const brand of staticBrands) {
       if (brand.preview_images) {
@@ -68,11 +68,15 @@ describe('brands data', () => {
   it('contains expected brand names', () => {
     const names = staticBrands.map((b) => b.name)
 
+    expect(names).toContain('GIANFRANCO LOTTI')
     expect(names).toContain('CAMPOMAGGI')
     expect(names).toContain('CATERINA LUCCHI')
+    expect(names).toContain('101MEME')
     expect(names).toContain('GABS')
     expect(names).toContain('CHIARUGI')
-    expect(names).toContain('BEAR DESIGN')
+    expect(names).toContain('dR. AMSTERDAM')
+    expect(names).toContain('Bear Design')
+    expect(names).toContain('HEXAGONA')
     expect(names).toContain('ROBERTO MANTELLASSI')
   })
 })

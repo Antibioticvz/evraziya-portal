@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
 const brandLinks = [
+  { href: '/brendy/gianfranco-lotti', label: 'Gianfranco Lotti' },
   { href: '/brendy/campomaggi', label: 'Campomaggi' },
   { href: '/brendy/caterina-lucchi', label: 'Caterina Lucchi' },
   { href: '/brendy/gabs', label: 'Gabs' },
-  { href: '/brendy/chiarugi', label: 'Chiarugi' },
-  { href: '/brendy/bear-design', label: 'Bear Design' },
-  { href: '/brendy/vilenca-holland', label: 'Vilenca Holland' },
+  { href: '/brendy/dr-amsterdam', label: 'dR. Amsterdam' },
+  { href: '/brendy/hexagona', label: 'Hexagona' },
 ]
 
 export function Footer() {
@@ -47,12 +47,16 @@ export function Footer() {
             </h3>
             <div className="space-y-3 text-sm">
               <a
-                href="https://wa.me/74991267560"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:+74991267560"
                 className="block text-white/60 hover:text-white transition-colors"
               >
-                WhatsApp: +7 499 126 75 60
+                +7 (499) 126-75-60
+              </a>
+              <a
+                href="tel:+79333990372"
+                className="block text-white/60 hover:text-white transition-colors"
+              >
+                +7 (933) 399-03-72
               </a>
               <a
                 href="mailto:brand@evraziyagroup.com"

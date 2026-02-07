@@ -211,7 +211,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                 href="/kontakty"
                 className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-evraziya-purple rounded-lg hover:bg-evraziya-purple-hover transition-colors"
               >
-                Связаться с нами
+                Представить бренд в вашем магазине
               </Link>
               <Link
                 href="/brendy"
